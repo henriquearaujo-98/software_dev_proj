@@ -12,9 +12,9 @@ public class Client
     public int id;
     public TCP tcp;
 
-    public Client(int _clientId)
+    public Client(int clientId)
     {
-        id = _clientId;
+        id = clientId;
         tcp = new TCP(id);
     }
 
@@ -24,6 +24,7 @@ public class Client
 
         private readonly int id;
         private NetworkStream stream;
+        private Packet receivedData;
         private byte[] receiveBuffer;
 
         public TCP(int _id)
@@ -31,43 +32,106 @@ public class Client
             id = _id;
         }
 
-        public void Connect(TcpClient _socket)
+        public void Connect(TcpClient socket)
         {
-            socket = _socket;
-            socket.ReceiveBufferSize = dataBufferSize;
-            socket.SendBufferSize = dataBufferSize;
+            this.socket = socket;
+            this.socket.ReceiveBufferSize = dataBufferSize;
+            this.socket.SendBufferSize = dataBufferSize;
 
             stream = socket.GetStream();
 
+            receivedData = new Packet();
             receiveBuffer = new byte[dataBufferSize];
 
             stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
 
-            // TODO: send welcome packet
+            ServerSend.Welcome(id, "Welcome to the server!");
         }
 
-        private void ReceiveCallback(IAsyncResult _result)
+        public void SendData(Packet packet)
         {
             try
             {
-                int _byteLength = stream.EndRead(_result);
-                if (_byteLength <= 0)
+                if (socket != null)
+                {
+                    stream.BeginWrite(packet.ToArray(), 0, packet.Length(), null, null);
+                }
+            }
+            catch (Exception _ex)
+            {
+                Console.WriteLine($"Error sending data to player {id} via TCP: {_ex}");
+            }
+        }
+
+        private void ReceiveCallback(IAsyncResult result)
+        {
+            try
+            {
+                int byteLength = stream.EndRead(result);
+                if (byteLength <= 0)
                 {
                     // TODO: disconnect
                     return;
                 }
 
-                byte[] _data = new byte[_byteLength];
-                Array.Copy(receiveBuffer, _data, _byteLength);
+                byte[] data = new byte[byteLength];
+                Array.Copy(receiveBuffer, data, byteLength);
 
-                // TODO: handle data
+                receivedData.Reset(HandleData(data));
                 stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
             }
-            catch (Exception _ex)
+            catch (Exception e)
             {
-                Console.WriteLine($"Error receiving TCP data: {_ex}");
+                Console.WriteLine($"Error receiving TCP data: {e}");
                 // TODO: disconnect
             }
         }
+
+        private bool HandleData(byte[] data)
+        {
+            int packetLength = 0;
+
+            receivedData.SetBytes(data);
+
+            if (receivedData.UnreadLength() >= 4)
+            {
+                packetLength = receivedData.ReadInt();
+                if (packetLength <= 0)
+                {
+                    return true;
+                }
+            }
+
+            while (packetLength > 0 && packetLength <= receivedData.UnreadLength())
+            {
+                byte[] _packetBytes = receivedData.ReadBytes(packetLength);
+                ThreadManager.ExecuteOnMainThread(() =>
+                {
+                    using (Packet _packet = new Packet(_packetBytes))
+                    {
+                        int _packetId = _packet.ReadInt();
+                        Server.packetHandlers[_packetId](id, _packet);
+                    }
+                });
+
+                packetLength = 0;
+                if (receivedData.UnreadLength() >= 4)
+                {
+                    packetLength = receivedData.ReadInt();
+                    if (packetLength <= 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            if (packetLength <= 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
+

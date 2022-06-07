@@ -53,9 +53,13 @@
     <UnityVersion>2020.3.17f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Client.cs" />
-    <Compile Include="Assets\Scripts\Server.cs" />
     <Compile Include="Assets\Scripts\NetworkManager.cs" />
+    <Compile Include="Assets\Scripts\Server.cs" />
+    <Compile Include="Assets\Scripts\Client.cs" />
+    <Compile Include="Assets\Scripts\Packet.cs" />
+    <Compile Include="Assets\Scripts\ThreadManager.cs" />
+    <Compile Include="Assets\Scripts\ServerHandle.cs" />
+    <Compile Include="Assets\Scripts\ServerSend.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

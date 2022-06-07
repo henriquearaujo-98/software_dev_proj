@@ -10,6 +10,8 @@ public class Server : MonoBehaviour
     public static int MaxPlayers { get; private set; }
     public static int Port { get; private set; }
     public static Dictionary<int, Client> clients = new Dictionary<int, Client>();
+    public delegate void PacketHandler(int _fromClient, Packet _packet);
+    public static Dictionary<int, PacketHandler> packetHandlers;
 
     private static TcpListener tcpListener;
 
@@ -30,20 +32,20 @@ public class Server : MonoBehaviour
 
     private static void TCPConnectCallback(IAsyncResult result)
     {
-        TcpClient client = tcpListener.EndAcceptTcpClient(result);
+        TcpClient _client = tcpListener.EndAcceptTcpClient(result);
         tcpListener.BeginAcceptTcpClient(TCPConnectCallback, null);
-        Debug.Log($"Incoming connection from {client.Client.RemoteEndPoint}...");
+        Debug.Log($"Incoming connection from {_client.Client.RemoteEndPoint}...");
 
         for (int i = 1; i <= MaxPlayers; i++)
         {
             if (clients[i].tcp.socket == null)
             {
-                clients[i].tcp.Connect(client);
+                clients[i].tcp.Connect(_client);
                 return;
             }
         }
 
-        Debug.Log($"{client.Client.RemoteEndPoint} failed to connect: Server full!");
+        Debug.Log($"{_client.Client.RemoteEndPoint} failed to connect: Server full!");
     }
 
     private static void InitializeServerData()
@@ -52,6 +54,12 @@ public class Server : MonoBehaviour
         {
             clients.Add(i, new Client(i));
         }
+
+        packetHandlers = new Dictionary<int, PacketHandler>()
+            {
+                { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived }
+            };
+        Debug.Log("Initialized packets.");
     }
 }
 
