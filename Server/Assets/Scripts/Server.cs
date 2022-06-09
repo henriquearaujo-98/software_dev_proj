@@ -117,7 +117,8 @@ public class Server : MonoBehaviour
         packetHandlers = new Dictionary<int, PacketHandler>()
             {
                 { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
-                { (int)ClientPackets.updTestReceived, ServerHandle.UDPTestReceived }
+                { (int)ClientPackets.updTestReceived, ServerHandle.UDPTestReceived },
+                { (int)ClientPackets.playerMovement, ServerHandle.PlayerMovement },
             };
         Debug.Log("Initialized packets.");
     }
