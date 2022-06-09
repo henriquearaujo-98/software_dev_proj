@@ -10,6 +10,7 @@ public class Client
     public static int dataBufferSize = 4096;
 
     public int id;
+    public Player player;
     public TCP tcp;
     public UDP udp;
 
@@ -173,5 +174,33 @@ public class Client
             });
         }
     }
+
+    public void SendIntoGame(string _playerName)
+    {
+        player = NetworkManager.instance.InstantiatePlayer();
+        player.Initialize(id, _playerName);
+
+        // Sending information about other players that are already connected to the new player
+        foreach (Client _client in Server.clients.Values)
+        {
+            if (_client.player != null)
+            {
+                if (_client.id != id)
+                {
+                    ServerSend.SpawnPlayer(id, _client.player);
+                }
+            }
+        }
+
+        // Sending information about new player to all other players, aswell as to himself
+        foreach (Client _client in Server.clients.Values)
+        {
+            if (_client.player != null)
+            {
+                ServerSend.SpawnPlayer(_client.id, player);
+            }
+        }
+    }
 }
+
 

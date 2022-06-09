@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\ServerHandle.cs" />
     <Compile Include="Assets\Scripts\ThreadManager.cs" />
     <Compile Include="Assets\Scripts\ServerSend.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

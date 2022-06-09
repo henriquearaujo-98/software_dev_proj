@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
 {
+    [SerializeField] GameObject playerPrefab;
+
     public static NetworkManager instance;
 
     private void Awake()
@@ -25,5 +27,10 @@ public class NetworkManager : MonoBehaviour
         Application.targetFrameRate = 30;
 
         Server.Start(50, 26950);
+    }
+
+    public Player InstantiatePlayer()
+    {
+        return Instantiate(playerPrefab, new Vector3(0f, 0.5f, 0f), Quaternion.identity).GetComponent<Player>();
     }
 }
