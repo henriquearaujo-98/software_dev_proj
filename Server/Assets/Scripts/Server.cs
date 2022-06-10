@@ -122,5 +122,11 @@ public class Server : MonoBehaviour
             };
         Debug.Log("Initialized packets.");
     }
+
+    public static void Stop()
+    {
+        tcpListener.Stop();
+        udpListener.Close();
+    }
 }
 
