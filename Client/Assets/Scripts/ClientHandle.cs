@@ -13,6 +13,7 @@ public class ClientHandle : MonoBehaviour
 
         Debug.Log($"Message from server: {msg}");
         Client.instance.myId = myId;
+
         ClientSend.WelcomeReceived();
 
         Client.instance.udp.Connect(((IPEndPoint)Client.instance.tcp.socket.Client.LocalEndPoint).Port);

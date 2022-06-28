@@ -44,6 +44,11 @@ public class Player : MonoBehaviour
         if (health < 1)
             return;
 
+        InputController();
+    }
+
+    private void InputController()
+    {
         Vector2 _inputDirection = Vector2.zero;
         if (inputs[0])
         {
@@ -99,7 +104,6 @@ public class Player : MonoBehaviour
     {
         if (Physics.Raycast(shootOrigin.position, _viewDirection, out RaycastHit _hit, 25f))
         {
-            Debug.Log(_hit.collider.tag);
             if (_hit.collider.CompareTag("Player"))
             {
                 
@@ -110,7 +114,6 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
-        Debug.Log("taking damage");
         if (health <= 0f)
         {
             return;
@@ -121,7 +124,7 @@ public class Player : MonoBehaviour
         {
             health = 0f;
             controller.enabled = false;
-            transform.position = new Vector3(0f, 25f, 0f);
+            transform.position = new Vector3(0f, 25f, 0f); //Respawn position
             ServerSend.PlayerPosition(this);
             StartCoroutine(Respawn());
         }
