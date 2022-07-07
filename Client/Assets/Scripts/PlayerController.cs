@@ -9,10 +9,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            ClientSend.PlayerShoot(camTransform.forward);
-        }
+        
     }
 
     private void FixedUpdate()
@@ -30,8 +27,7 @@ public class PlayerController : MonoBehaviour
             Input.GetKey(KeyCode.A),
             Input.GetKey(KeyCode.D),
             Input.GetKey(KeyCode.Space),
-            Input.GetKey(KeyCode.mouse x),
-            Input.GetKey(KeyCode.mouse y),
+
 
         };
 
