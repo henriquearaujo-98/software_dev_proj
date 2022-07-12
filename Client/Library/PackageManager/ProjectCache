@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637927814170000000
+      ticks: 637932295600000000
     m_Hash: 1057299360
   m_LockFileStatus:
     m_FilePath: /Users/orwastef/Documents/GitHub/software_dev_proj/Client/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637927814170000000
+      ticks: 637932295600000000
     m_Hash: 1016591461
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}

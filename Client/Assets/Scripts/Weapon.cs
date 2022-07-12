@@ -5,11 +5,16 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public string name;
-    public int ammo;
-    public int maxAmmo = 200;
+    public int maxAmmoInMagazine;
+    public int currAmmo;
+    public int TotalAmmo;
     public float cooldownSeconds = 4;
     public float cooldown;
     public float fireRate;
+
+    public float reloadTime = 1f;
+    public bool isReloading = false ;
+
 
     public float nextFire;
     public ParticleSystem ImpactPoint; 
@@ -24,15 +29,27 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        currAmmo = maxAmmoInMagazine;
     }
 
     // Update is called once per frame
     void Update()
-    {       
+    {    
+        if (isReloading)
+            return;
+
+
+        if( currAmmo<=0 && TotalAmmo>0 )
+        {
+           StartCoroutine(Reload());
+            return;
+
+        }
+
         if(fireRate == 0 && Input.GetKeyDown(KeyCode.Mouse0))
         {  
             Shoot ();
+            
         }
         else
         {
@@ -41,12 +58,12 @@ public class Weapon : MonoBehaviour
                    
                    nextFire = Time.time + fireRate;
                    Shoot ();
-                   ammo--; 
+                   
                 
                   
                    if(cooldown > Time.time)
                    {   
-                      cooldown = Time.time + cooldownSeconds;
+                      cooldown = Time.time + cooldownSeconds; 
                    }
                 
             }
@@ -55,7 +72,13 @@ public class Weapon : MonoBehaviour
     }
 
     void Shoot(){
+
+        if (TotalAmmo<=0 && currAmmo<=0)
+            return; ///add clicking sound 
+
         MuzzleFlash.Play();
+
+        currAmmo--;
         
         ClientSend.PlayerShoot(shootOrigin.forward);
 
@@ -64,5 +87,21 @@ public class Weapon : MonoBehaviour
         {
             Instantiate(ImpactPoint, hit.point, Quaternion.LookRotation(hit.normal));
         }
+    }
+
+    IEnumerator Reload()
+    {
+
+        isReloading = true;
+
+        Debug.Log("reloading ..");
+
+        yield return new WaitForSeconds(reloadTime);
+
+        currAmmo = maxAmmoInMagazine;
+
+        TotalAmmo = TotalAmmo - maxAmmoInMagazine + (currAmmo);
+
+        isReloading = false;
     }
 }
