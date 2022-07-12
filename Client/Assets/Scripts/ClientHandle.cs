@@ -68,8 +68,10 @@ public class ClientHandle : MonoBehaviour
     {
         int _id = _packet.ReadInt();
         float _health = _packet.ReadFloat();
+        Vector3 _damageFrom = _packet.ReadVector3();
 
         GameManager.players[_id].SetHealth(_health);
+        GameManager.players[_id].SetDamageIndicator(_damageFrom);
     }
 
     public static void PlayerRespawned(Packet _packet)
