@@ -107,12 +107,12 @@ public class Player : MonoBehaviour
             if (_hit.collider.CompareTag("Player"))
             {
                 
-                _hit.collider.GetComponent<Player>().TakeDamage(50f);
+                _hit.collider.GetComponent<Player>().TakeDamage(50f, _hit.transform.position);
             }
         }
     }
 
-    public void TakeDamage(float _damage)
+    public void TakeDamage(float _damage, Vector3 damageFrom)
     {
         if (health <= 0f)
         {
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
             StartCoroutine(Respawn());
         }
 
-        ServerSend.PlayerHealth(this);
+        ServerSend.PlayerHealth(this, damageFrom);
     }
 
     private IEnumerator Respawn()

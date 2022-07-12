@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] Transform camTransform;
+    
 
     private void Update()
     {

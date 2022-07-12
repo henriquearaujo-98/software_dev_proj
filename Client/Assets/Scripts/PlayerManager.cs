@@ -9,6 +9,10 @@ public class PlayerManager : MonoBehaviour
     public float health;
     public float maxHealth = 100f;
     public MeshRenderer model;
+    [SerializeField] DamageIndicator DamageIndicator;
+    [SerializeField] GameObject DamageFrom;
+    Transform DamageFromTransform;
+    
 
     public void Initialize(int _id, string _username)
     {
@@ -24,6 +28,21 @@ public class PlayerManager : MonoBehaviour
         if (health <= 0f)
         {
             Die();
+        }
+    }
+
+    public void SetDamageIndicator(Vector3 _damageFrom)
+    {
+        GameObject temp = Instantiate(DamageFrom, _damageFrom, Quaternion.identity);
+        DamageFromTransform = temp.transform;
+        Invoke("RegisterDamageIndicator", 0f);
+    }
+
+    void RegisterDamageIndicator()
+    {
+        if (!DI_System.CheckIfObjectInSight(DamageFromTransform))
+        {
+            DI_System.CreateIndicator(DamageFromTransform);
         }
     }
 

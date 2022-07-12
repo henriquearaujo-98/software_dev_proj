@@ -128,12 +128,13 @@ public class ServerSend
         }
     }
 
-    public static void PlayerHealth(Player _player)
+    public static void PlayerHealth(Player _player, Vector3 damageFrom)
     {
         using (Packet _packet = new Packet((int)ServerPackets.playerHealth))
         {
             _packet.Write(_player.id); 
             _packet.Write(_player.health);
+            _packet.Write(damageFrom);
 
             SendTCPDataToAll(_packet);
         }
