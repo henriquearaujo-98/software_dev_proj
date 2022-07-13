@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
             if (_hit.collider.CompareTag("Player"))
             {
                 
-                _hit.collider.GetComponent<Player>().TakeDamage(50f, _hit.transform.position);
+                _hit.collider.GetComponent<Player>().TakeDamage(50f, transform.position);
             }
         }
     }
