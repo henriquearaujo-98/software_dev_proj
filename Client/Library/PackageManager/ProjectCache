@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637926282212000028
+      ticks: 637933248756712976
     m_Hash: 3870291422
   m_LockFileStatus:
     m_FilePath: D:/school/32/SDP/repo/software_dev_proj/Client/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637926282212000028
+      ticks: 637933248756712976
     m_Hash: 2579885654
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
