@@ -8,10 +8,7 @@ public class Weapon : MonoBehaviour
     public int maxAmmoInMagazine;
     public int currAmmo;
     public int TotalAmmo;
-    public float cooldownSeconds = 4;
-    public float cooldown;
     public float fireRate;
-
     public float reloadTime = 1f;
     public bool isReloading = false ;
 
@@ -38,36 +35,23 @@ public class Weapon : MonoBehaviour
         if (isReloading)
             return;
 
-
         if( currAmmo<=0 && TotalAmmo>0 )
         {
            StartCoroutine(Reload());
             return;
-
         }
 
         if(fireRate == 0 && Input.GetKeyDown(KeyCode.Mouse0))
         {  
-            Shoot ();
-            
+            Shoot ();           
         }
-        else
-        {
-            if(Input.GetKey(KeyCode.Mouse0) && Time.time > nextFire && fireRate > 0)
-            {
-                   
-                   nextFire = Time.time + fireRate;
-                   Shoot ();
-                   
-                
-                  
-                   if(cooldown > Time.time)
-                   {   
-                      cooldown = Time.time + cooldownSeconds; 
-                   }
-                
-            }
-        } 
+        
+        else if(Input.GetKey(KeyCode.Mouse0) && Time.time > nextFire && fireRate > 0)
+        {                  
+            nextFire = Time.time + fireRate;
+            Shoot ();
+        }
+        
              
     }
 
@@ -91,16 +75,20 @@ public class Weapon : MonoBehaviour
 
     IEnumerator Reload()
     {
-
         isReloading = true;
 
         Debug.Log("reloading ..");
 
         yield return new WaitForSeconds(reloadTime);
 
-        currAmmo = maxAmmoInMagazine;
+        if (TotalAmmo >= maxAmmoInMagazine){
+            TotalAmmo = TotalAmmo - maxAmmoInMagazine + currAmmo;
 
-        TotalAmmo = TotalAmmo - maxAmmoInMagazine + (currAmmo);
+            currAmmo = maxAmmoInMagazine;
+        }else{
+            currAmmo = TotalAmmo;
+            TotalAmmo = 0;
+        }
 
         isReloading = false;
     }
