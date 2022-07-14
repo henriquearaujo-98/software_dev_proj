@@ -48,7 +48,7 @@ public class ServerHandle : MonoBehaviour
     {
         int _weaponIndex = _packet.ReadInt();
 
-        Server.clients[_fromClient].player.weaponSwitching.selectedWeapon = _weaponIndex;
+        Server.clients[_fromClient].player.weaponSwitching.Select(_weaponIndex);
         Debug.Log("Switching weapon to slot " + _weaponIndex);
     }
 }

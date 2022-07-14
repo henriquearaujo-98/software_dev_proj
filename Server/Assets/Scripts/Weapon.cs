@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
     public int TotalAmmo;
     public float fireRate;
     public float reloadTime = 1f;
-    public bool isReloading = false ;
+    public bool isReloading = false;
     public bool fire = false;
     public int damage;
 
@@ -19,6 +19,11 @@ public class Weapon : MonoBehaviour
 
     private Transform shootOrigin;
     public ParticleSystem MuzzleFlash;
+
+    public bool getButton; // for automatic fire
+    public Vector3 viewDirection;
+
+    bool automaticControl = true;
 
     private void Awake() {
         shootOrigin = GameObject.FindGameObjectWithTag("ShootOrigin").transform;
@@ -30,33 +35,40 @@ public class Weapon : MonoBehaviour
         currAmmo = maxAmmoInMagazine;
     }
 
-    // Update is called once per frame
-    public void SetShooting(Vector3 _viewDirection)
-    {    
+    private void Update()
+    {
         if (isReloading)
             return;
 
-        if( currAmmo<=0 && TotalAmmo>0 )
+        if (currAmmo <= 0 && TotalAmmo > 0)
         {
-           StartCoroutine(Reload());
+            StartCoroutine(Reload());
             return;
         }
 
-        if(fireRate == 0)
-        {  
-            Shoot (_viewDirection);           
+        if (fireRate == 0 && getButton)
+        {
+            if (automaticControl)
+            {
+                automaticControl = false;
+                Shoot();
+            }
+            
         }
-        
-        else if(Time.time > nextFire && fireRate > 0)
-        {                  
-            nextFire = Time.time + fireRate;
-            Shoot (_viewDirection);
+
+        if(getButton == false)
+        {
+            automaticControl = true;
         }
-        
-             
+
+        else if (getButton && Time.fixedTime > nextFire && fireRate > 0)
+        {
+            nextFire = Time.fixedTime + fireRate;
+            Shoot();
+        }
     }
 
-    void Shoot(Vector3 _viewDirection){
+    void Shoot(){
 
         if (TotalAmmo<=0 && currAmmo<=0)
             return; ///add clicking sound 
@@ -64,8 +76,7 @@ public class Weapon : MonoBehaviour
         currAmmo--;
         
 
-        RaycastHit hit; 
-       if (Physics.Raycast(shootOrigin.position, _viewDirection, out RaycastHit _hit, 25f))
+       if (Physics.Raycast(shootOrigin.position, viewDirection, out RaycastHit _hit, 25f))
         {
             if (_hit.collider.CompareTag("Player"))
             {
@@ -74,7 +85,6 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        Debug.Log("Shooting");
     }
 
     IEnumerator Reload()

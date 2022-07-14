@@ -17,7 +17,7 @@ public class WeaponSwitching : MonoBehaviour {
     public int selectedWeapon;
     private float timeSinceLastSwitch;
 
-    private void Start() {
+    private void Awake() {
         SetWeapons();
         Select(selectedWeapon);
 
@@ -41,7 +41,10 @@ public class WeaponSwitching : MonoBehaviour {
         timeSinceLastSwitch += Time.deltaTime;
     }
 
-    private void Select(int weaponIndex) {
+    public void Select(int weaponIndex) {
+
+        this.selectedWeapon = weaponIndex;
+
         for (int i = 0; i < weapons.Length; i++)
             weapons[i].gameObject.SetActive(i == weaponIndex);
 
