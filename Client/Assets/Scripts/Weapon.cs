@@ -29,7 +29,7 @@ public class Weapon : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {    
         if (isReloading)
             return;
