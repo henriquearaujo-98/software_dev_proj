@@ -36,11 +36,6 @@ public class WeaponSwitching : MonoBehaviour {
     private void Update() {
         int previousSelectedWeapon = selectedWeapon;
 
-        for (int i = 0; i < keys.Length; i++)
-            if (Input.GetKeyDown(keys[i]) && timeSinceLastSwitch >= switchTime)
-                selectedWeapon = i;
-            
-            
         if (previousSelectedWeapon != selectedWeapon) Select(selectedWeapon);
 
         timeSinceLastSwitch += Time.deltaTime;
@@ -52,10 +47,8 @@ public class WeaponSwitching : MonoBehaviour {
 
         timeSinceLastSwitch = 0f;
 
-        OnWeaponSelected(weaponIndex);
+        OnWeaponSelected();
     }
 
-    private void OnWeaponSelected(int weaponIndex) { 
-        ClientSend.WeaponIndex(weaponIndex);
-    }
+    private void OnWeaponSelected() {  }
 }

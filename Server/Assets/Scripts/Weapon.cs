@@ -11,6 +11,8 @@ public class Weapon : MonoBehaviour
     public float fireRate;
     public float reloadTime = 1f;
     public bool isReloading = false ;
+    public bool fire = false;
+    public int damage;
 
     public float nextFire;
     public ParticleSystem ImpactPoint; 
@@ -19,7 +21,7 @@ public class Weapon : MonoBehaviour
     public ParticleSystem MuzzleFlash;
 
     private void Awake() {
-        shootOrigin = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
+        shootOrigin = GameObject.FindGameObjectWithTag("ShootOrigin").transform;
     }
 
     // Start is called before the first frame update
@@ -29,7 +31,7 @@ public class Weapon : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void SetShooting(Vector3 _viewDirection)
     {    
         if (isReloading)
             return;
@@ -40,35 +42,39 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        if(fireRate == 0 && Input.GetKeyDown(KeyCode.Mouse0))
+        if(fireRate == 0)
         {  
-            Shoot ();           
+            Shoot (_viewDirection);           
         }
         
-        else if(Input.GetKey(KeyCode.Mouse0) && Time.time > nextFire && fireRate > 0)
+        else if(Time.time > nextFire && fireRate > 0)
         {                  
             nextFire = Time.time + fireRate;
-            Shoot ();
+            Shoot (_viewDirection);
         }
         
              
     }
 
-    void Shoot(){
+    void Shoot(Vector3 _viewDirection){
 
         if (TotalAmmo<=0 && currAmmo<=0)
             return; ///add clicking sound 
-
-        MuzzleFlash.Play();
 
         currAmmo--;
         
 
         RaycastHit hit; 
-        if (Physics.Raycast(shootOrigin.position, shootOrigin.forward, out hit, 250f))
+       if (Physics.Raycast(shootOrigin.position, _viewDirection, out RaycastHit _hit, 25f))
         {
-            Instantiate(ImpactPoint, hit.point, Quaternion.LookRotation(hit.normal));
+            if (_hit.collider.CompareTag("Player"))
+            {
+                
+                _hit.collider.GetComponent<Player>().TakeDamage(damage, transform.position);
+            }
         }
+
+        Debug.Log("Shooting");
     }
 
     IEnumerator Reload()

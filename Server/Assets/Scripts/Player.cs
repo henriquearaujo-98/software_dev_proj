@@ -20,9 +20,12 @@ public class Player : MonoBehaviour
 
     public bool[] inputs;
 
+    public WeaponSwitching weaponSwitching;
+
     private void Start()
     {
         controller = this.GetComponent<CharacterController>();
+        //weaponSwitching = this.GetComponent<WeaponSwitching>();
 
         gravity *= Time.fixedDeltaTime * Time.fixedDeltaTime;
         moveSpeed *= Time.fixedDeltaTime;
@@ -102,14 +105,9 @@ public class Player : MonoBehaviour
 
     public void Shoot(Vector3 _viewDirection)
     {
-        if (Physics.Raycast(shootOrigin.position, _viewDirection, out RaycastHit _hit, 25f))
-        {
-            if (_hit.collider.CompareTag("Player"))
-            {
-                
-                _hit.collider.GetComponent<Player>().TakeDamage(50f, transform.position);
-            }
-        }
+       Weapon w = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
+       //weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>().SetShooting(_viewDirection);
+        Debug.Log(w.currAmmo);
     }
 
     public void TakeDamage(float _damage, Vector3 damageFrom)

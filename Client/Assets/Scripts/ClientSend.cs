@@ -65,5 +65,17 @@ public class ClientSend : MonoBehaviour
             SendTCPData(_packet);
         }
     }
+
+    public static void WeaponIndex(int weaponIndex)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.weaponIndex))
+        {
+            _packet.Write(weaponIndex);
+
+            SendTCPData(_packet);
+
+            
+        }
+    }
     #endregion
 }
