@@ -40,18 +40,19 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        if(fireRate == 0 && Input.GetKeyDown(KeyCode.Mouse0))
-        {  
-            Shoot ();           
-        }
-        
-        else if(Input.GetKey(KeyCode.Mouse0) && Time.time > nextFire && fireRate > 0)
+        if(Input.GetKey(KeyCode.Mouse0) && Time.time > nextFire && fireRate > 0)
         {                  
             nextFire = Time.time + fireRate;
             Shoot ();
         }
-        
-             
+    }
+
+    private void Update()
+    {
+        if (fireRate == 0 && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Shoot();
+        }
     }
 
     void Shoot(){

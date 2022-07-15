@@ -461,6 +461,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 100
   inputs: 
+  weaponSwitching: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
