@@ -100,16 +100,14 @@ public class Player : MonoBehaviour
 
     public void SetInput(bool[] _inputs, Quaternion _rotation)
     {
-
         inputs = _inputs;
         transform.rotation = _rotation;
     }
 
     public void Shoot(Vector3 _viewDirection)
     {
-       currentWeapon = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
+        currentWeapon = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
         currentWeapon.viewDirection = _viewDirection;
-       
     }
 
     public void TakeDamage(float _damage, Vector3 damageFrom)
