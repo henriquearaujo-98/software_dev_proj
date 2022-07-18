@@ -54,6 +54,7 @@ MonoBehaviour:
   damage: 25
   nextFire: 3
   ImpactPoint: {fileID: 0}
+  shootOrigin: {fileID: 0}
   MuzzleFlash: {fileID: 0}
   getButton: 0
   viewDirection: {x: 0, y: 0, z: 0}
@@ -164,6 +165,7 @@ MonoBehaviour:
   maxHealth: 100
   inputs: 
   weaponSwitching: {fileID: 5234494242926772409}
+  currentWeapon: {fileID: 0}
 --- !u!143 &483009488609063019
 CharacterController:
   m_ObjectHideFlags: 0
@@ -236,6 +238,7 @@ MonoBehaviour:
   damage: 25
   nextFire: 0
   ImpactPoint: {fileID: 0}
+  shootOrigin: {fileID: 0}
   MuzzleFlash: {fileID: 0}
   getButton: 0
   viewDirection: {x: 0, y: 0, z: 0}
@@ -331,7 +334,7 @@ GameObject:
   - component: {fileID: 580138823092503267}
   m_Layer: 0
   m_Name: shootOrigen
-  m_TagString: ShootOrigin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

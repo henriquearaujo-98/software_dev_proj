@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     public float nextFire;
     public ParticleSystem ImpactPoint; 
 
-    private Transform shootOrigin;
+    public Transform shootOrigin;
     public ParticleSystem MuzzleFlash;
 
     public bool getButton; // for automatic fire
@@ -25,9 +25,6 @@ public class Weapon : MonoBehaviour
 
     bool automaticControl = true;
 
-    private void Awake() {
-        shootOrigin = GameObject.FindGameObjectWithTag("ShootOrigin").transform;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -84,6 +81,8 @@ public class Weapon : MonoBehaviour
                 _hit.collider.GetComponent<Player>().TakeDamage(damage, transform.position);
             }
         }
+
+        Debug.DrawRay(shootOrigin.position, viewDirection, Color.green, 2f);
 
     }
 

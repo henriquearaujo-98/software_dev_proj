@@ -40,7 +40,7 @@ public class ServerHandle : MonoBehaviour
     public static void PlayerShoot(int _fromClient, Packet _packet)
     {
         Vector3 _shootDirection = _packet.ReadVector3();
-
+        Debug.Log(_shootDirection);
         Server.clients[_fromClient].player.Shoot(_shootDirection);
     }
 
@@ -49,6 +49,7 @@ public class ServerHandle : MonoBehaviour
         int _weaponIndex = _packet.ReadInt();
 
         Server.clients[_fromClient].player.weaponSwitching.Select(_weaponIndex);
-        Debug.Log("Switching weapon to slot " + _weaponIndex);
+
+        
     }
 }

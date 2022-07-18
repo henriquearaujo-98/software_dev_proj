@@ -21,12 +21,12 @@ public class Player : MonoBehaviour
     public bool[] inputs;
 
     public WeaponSwitching weaponSwitching;
-    Weapon currentWeapon;
+    public Weapon currentWeapon;
 
     private void Start()
     {
         controller = this.GetComponent<CharacterController>();
-        currentWeapon = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
+        
 
         gravity *= Time.fixedDeltaTime * Time.fixedDeltaTime;
         moveSpeed *= Time.fixedDeltaTime;
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         id = _id;
         username = _username;
         health = maxHealth;
-        
+        currentWeapon = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
         inputs = new bool[8];
     }
 
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
             return;
 
         currentWeapon.getButton = inputs[7];
-
+        
         InputController();
     }
 
@@ -108,6 +108,7 @@ public class Player : MonoBehaviour
     {
         currentWeapon = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
         currentWeapon.viewDirection = _viewDirection;
+        currentWeapon.shootOrigin = shootOrigin;
     }
 
     public void TakeDamage(float _damage, Vector3 damageFrom)
