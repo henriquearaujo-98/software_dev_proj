@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
     public float fireRate;
     public float reloadTime = 1f;
     public bool isReloading = false ;
+    public bool isWalking = true;
 
     public float nextFire;
     public ParticleSystem ImpactPoint; 
@@ -38,7 +39,13 @@ public class Weapon : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {    
+    {
+
+        if (isWalking)
+            anim.SetBool("Walk", true);
+        else
+            anim.SetBool("Walk", false);
+
         if (isReloading)
             return;
 

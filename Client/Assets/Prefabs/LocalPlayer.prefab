@@ -583,6 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camTransform: {fileID: 5351909130442941624}
+  weaponHolder: {fileID: 4419807356573336539}
 --- !u!1001 &1087902999039833901
 PrefabInstance:
   m_ObjectHideFlags: 0
