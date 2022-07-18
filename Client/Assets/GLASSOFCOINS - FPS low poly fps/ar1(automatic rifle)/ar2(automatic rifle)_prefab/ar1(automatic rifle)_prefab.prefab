@@ -1926,6 +1926,7 @@ MonoBehaviour:
   fireRate: 0.125
   reloadTime: 1
   isReloading: 0
+  isWalking: 1
   nextFire: 0
   ImpactPoint: {fileID: 19800002, guid: 627bfa08ce624ab40ab2fea71785b5f0, type: 3}
   MuzzleFlash: {fileID: 0}
