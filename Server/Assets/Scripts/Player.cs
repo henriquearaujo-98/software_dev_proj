@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         username = _username;
         health = maxHealth;
         currentWeapon = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
-        inputs = new bool[8];
+        inputs = new bool[9];
     }
 
     public void FixedUpdate()
@@ -48,6 +48,10 @@ public class Player : MonoBehaviour
             return;
 
         currentWeapon.getButton = inputs[7];
+
+        if(inputs[8]){
+            StartCoroutine(currentWeapon.Reload());
+        }
         
         InputController();
     }

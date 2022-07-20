@@ -54,6 +54,11 @@ public class Weapon : MonoBehaviour
             return;
         }
 
+        if(Input.GetKeyDown(KeyCode.R) && currAmmo != maxAmmoInMagazine && TotalAmmo>0){
+           StartCoroutine(Reload());
+            return;
+        }
+
         if(Input.GetKey(KeyCode.Mouse0) && Time.time > nextFire && fireRate > 0)
         {                  
             nextFire = Time.time + fireRate;

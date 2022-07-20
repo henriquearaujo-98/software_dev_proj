@@ -46,7 +46,7 @@ MonoBehaviour:
   name: 
   maxAmmoInMagazine: 7
   currAmmo: 7
-  TotalAmmo: 14
+  TotalAmmo: 34
   fireRate: 0
   reloadTime: 1
   isReloading: 0

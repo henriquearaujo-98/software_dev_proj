@@ -86,7 +86,7 @@ public class Weapon : MonoBehaviour
 
     }
 
-    IEnumerator Reload()
+    public IEnumerator Reload()
     {
         isReloading = true;
 
