@@ -127,6 +127,17 @@ public class ServerSend
             SendUDPDataToAllExeptOne(_player.id, _packet);
         }
     }
+    
+    public static void PlayerScale(Player _player)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.playerScale))
+        {
+            _packet.Write(_player.id);
+            _packet.Write(_player.transform.localScale);
+
+            SendUDPDataToAllExeptOne(_player.id, _packet);
+        }
+    }
 
     public static void PlayerHealth(Player _player)
     {

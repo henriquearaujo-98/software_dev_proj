@@ -63,6 +63,14 @@ public class ClientHandle : MonoBehaviour
 
         GameManager.players[_id].transform.rotation = _rotation;
     }
+    
+    public static void PlayerScale(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+        Vector3 _scale = _packet.ReadVector3();
+
+        GameManager.players[_id].transform.localScale = _scale;
+    }
 
     public static void PlayerHealth(Packet _packet)
     {

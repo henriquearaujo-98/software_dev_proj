@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8341374824287880470}
   - component: {fileID: 7123511461756240600}
   - component: {fileID: 483009488609063019}
+  - component: {fileID: 5795990027919837808}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -32,6 +33,7 @@ Transform:
   - {fileID: 5283926004118060795}
   - {fileID: 5222407573601908029}
   - {fileID: 580138823092503267}
+  - {fileID: 7304384602035470464}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,12 +52,26 @@ MonoBehaviour:
   id: 0
   username: 
   shootOrigin: {fileID: 580138823092503267}
+  orientation: {fileID: 7304384602035470464}
   gravity: -9.81
-  moveSpeed: 5
+  currentMoveSpeed: 5
+  sprintSpeed: 8.5
+  originalMoveSpeed: 5
   jumpSpeed: 5
   health: 0
   maxHealth: 100
+  crouchSpeed: 0
+  crouchYScale: 0
+  crouchScale: 0.1
+  maxSlideTime: 0
+  slideForce: 0
+  slideYScale: 0
+  sliding: 0
   inputs: 
+  groundDrag: 5
+  wallRunSpeed: 8.5
+  state: 0
+  wallrunning: 0
 --- !u!143 &483009488609063019
 CharacterController:
   m_ObjectHideFlags: 0
@@ -74,6 +90,38 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5795990027919837808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5244954267758791675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9aff05511e5844fba97ab11afac7920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  wallRunForce: 200
+  wallJumpUpForce: 7
+  wallJumpSideForce: 12
+  wallClimbSpeed: 3
+  maxWallRunTime: 1.5
+  jumpKey: 32
+  upwardsRunKey: 304
+  downwardsRunKey: 306
+  wallCheckDistance: 0.7
+  minJumpHeight: 2
+  exitWallTime: 0.2
+  useGravity: 0
+  gravityCounterForce: 20
+  orientation: {fileID: 7304384602035470464}
 --- !u!1 &6578340250727684271
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,3 +314,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8166185387550825356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7304384602035470464}
+  m_Layer: 0
+  m_Name: orientation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7304384602035470464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8166185387550825356}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.05, y: 0.46, z: 0.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8341374824287880470}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
