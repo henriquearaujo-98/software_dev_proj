@@ -356,10 +356,9 @@ GameObject:
   - component: {fileID: 823775387}
   - component: {fileID: 823775386}
   - component: {fileID: 823775385}
-  - component: {fileID: 823775388}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -440,28 +439,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823775383}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &823775388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823775383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8988c2496d22a95428816fb242bcd7cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  username: 
-  shootOrigin: {fileID: 0}
-  gravity: -9.81
-  moveSpeed: 5
-  jumpSpeed: 5
-  health: 0
-  maxHealth: 100
-  inputs: 
-  weaponSwitching: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +553,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5244954267758791675, guid: 2df1af7b798c94e47a9af277dd84a2bb, type: 3}
+  weapons:
+  - {fileID: 1960364806938411695, guid: 16040f5e8b421784e977b699f5788a6f, type: 3}
+  - {fileID: 1754870581968103676, guid: 9457de33562d2b74fa0ba4f34fa32678, type: 3}
 --- !u!4 &1858539749
 Transform:
   m_ObjectHideFlags: 0

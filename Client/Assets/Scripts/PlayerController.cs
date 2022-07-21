@@ -6,19 +6,28 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] Transform camTransform;
-    
+    [SerializeField] WeaponSwitching weaponHolder;
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
             ClientSend.PlayerShoot(camTransform.forward);
+            Debug.Log(camTransform.forward);
         }
     }
 
     private void FixedUpdate()
     {
         SendInputToServer();
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            weaponHolder.weapons[weaponHolder.selectedWeapon].gameObject.GetComponent<Weapon>().isWalking = true;
+        }
+        else
+        {
+            weaponHolder.weapons[weaponHolder.selectedWeapon].gameObject.GetComponent<Weapon>().isWalking = false;
+        }
     }
 
     private void SendInputToServer()

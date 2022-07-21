@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -366,6 +366,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localPlayerPrefab: {fileID: 8584786931390803745, guid: f8b2f2e4ffa2af74c8fa4db2e5b747dc, type: 3}
   playerPrefab: {fileID: 8584786931390803745, guid: 9854fdaa5bc476246b20a6f5a033da7a, type: 3}
+  weapons:
+  - {fileID: 1902552239840251659, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+  - {fileID: 7781369597895923165, guid: 0a4b6727a478f63459593d5ed980b71f, type: 3}
 --- !u!4 &497121781
 Transform:
   m_ObjectHideFlags: 0
@@ -445,7 +448,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 64b48746cf267d34ea93ca0e4857c87e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -1,16 +1,20 @@
+/// Pay attention to the animator's animation node names
+/// The length of the reload animtion needs to match the reload time manually. A good rule is setting the Speed of the animation to twice the reload time variable
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public string name;
+    public int id;
     public int maxAmmoInMagazine;
     public int currAmmo;
     public int TotalAmmo;
     public float fireRate;
     public float reloadTime = 1f;
     public bool isReloading = false ;
+    public bool isWalking = true;
 
     public float nextFire;
     public ParticleSystem ImpactPoint; 
@@ -18,19 +22,29 @@ public class Weapon : MonoBehaviour
     private Transform shootOrigin;
     public ParticleSystem MuzzleFlash;
 
+    Animator anim;
+
     private void Awake() {
         shootOrigin = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
+        anim = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         currAmmo = maxAmmoInMagazine;
+       
     }
 
     // Update is called once per frame
     void FixedUpdate()
-    {    
+    {
+
+        if (isWalking)
+            anim.SetBool("Walk", true);
+        else
+            anim.SetBool("Walk", false);
+
         if (isReloading)
             return;
 
@@ -49,6 +63,9 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
+        if (isReloading)
+            return;
+
         if (fireRate == 0 && Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
@@ -70,11 +87,20 @@ public class Weapon : MonoBehaviour
         {
             Instantiate(ImpactPoint, hit.point, Quaternion.LookRotation(hit.normal));
         }
+
+        anim.Play("Fire Hip", 0, 0f);
     }
 
     IEnumerator Reload()
     {
         isReloading = true;
+        anim.SetBool("Reload", true);
+
+        if (currAmmo <= 0)
+            anim.Play("Reload No Bullets", 0, 0f);
+        else
+            anim.Play("Reload With Bullets", 0, 0f);
+
 
         Debug.Log("reloading ..");
 
@@ -89,6 +115,10 @@ public class Weapon : MonoBehaviour
             TotalAmmo = 0;
         }
 
+        anim.SetBool("Reload", false);
+
         isReloading = false;
+
     }
+
 }

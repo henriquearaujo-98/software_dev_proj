@@ -80,4 +80,15 @@ public class ClientHandle : MonoBehaviour
 
         GameManager.players[_id].Respawn();
     }
+
+    public static void KillFeed(Packet _packet)
+    {
+        int _fromPlayer = _packet.ReadInt();
+        int _weapon = _packet.ReadInt();
+        int _victimPlayer = _packet.ReadInt();
+
+        Debug.Log("WeaponID: " + _weapon);
+
+        Debug.Log($"{GameManager.players[_fromPlayer].username} [{GameManager.instance.weapons[_weapon].name}] {GameManager.players[_victimPlayer].username}");
+    }
 }

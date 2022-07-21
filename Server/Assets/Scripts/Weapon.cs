@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public string name;
+    public int id;
     public int maxAmmoInMagazine;
     public int currAmmo;
     public int TotalAmmo;
@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     public float nextFire;
     public ParticleSystem ImpactPoint; 
 
-    private Transform shootOrigin;
+    public Transform shootOrigin;
     public ParticleSystem MuzzleFlash;
 
     public bool getButton; // for automatic fire
@@ -25,9 +25,8 @@ public class Weapon : MonoBehaviour
 
     bool automaticControl = true;
 
-    private void Awake() {
-        shootOrigin = GameObject.FindGameObjectWithTag("ShootOrigin").transform;
-    }
+    [SerializeField] Player owner;
+
 
     // Start is called before the first frame update
     void Start()
@@ -80,10 +79,11 @@ public class Weapon : MonoBehaviour
         {
             if (_hit.collider.CompareTag("Player"))
             {
-                
-                _hit.collider.GetComponent<Player>().TakeDamage(damage, transform.position);
+                _hit.collider.GetComponent<Player>().TakeDamage(damage, owner, this);
             }
         }
+
+        Debug.DrawRay(shootOrigin.position, viewDirection, Color.green, 2f);
 
     }
 
