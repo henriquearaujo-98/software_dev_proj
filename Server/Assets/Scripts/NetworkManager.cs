@@ -26,7 +26,7 @@ public class NetworkManager : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 64;
 
-        Server.Start(50, 26950);
+        Server.Start(50, 9443);
     }
 
     private void OnApplicationQuit()
