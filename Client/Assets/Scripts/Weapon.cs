@@ -22,6 +22,8 @@ public class Weapon : MonoBehaviour
     private Transform shootOrigin;
     public ParticleSystem MuzzleFlash;
 
+    [SerializeField] PlayerManager owner;
+
     Animator anim;
 
     private void Awake() {
@@ -90,7 +92,14 @@ public class Weapon : MonoBehaviour
         RaycastHit hit; 
         if (Physics.Raycast(shootOrigin.position, shootOrigin.forward, out hit, 250f))
         {
-            Instantiate(ImpactPoint, hit.point, Quaternion.LookRotation(hit.normal));
+            if (hit.collider.tag == "Enemy")
+            {
+                owner.showHitmarker();
+            }
+            else
+            {
+                Instantiate(ImpactPoint, hit.point, Quaternion.LookRotation(hit.normal));
+            }
         }
 
         anim.Play("Fire Hip", 0, 0f);

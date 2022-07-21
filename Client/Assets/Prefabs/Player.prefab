@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 6058089311658039909}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,3 +243,4 @@ MonoBehaviour:
   model: {fileID: 2057015395552957302}
   DamageIndicator: {fileID: 0}
   DamageFrom: {fileID: 1852112118474511805, guid: 1e2352dc9ffeb6149aff4799909e47e2, type: 3}
+  canvasAnim: {fileID: 0}

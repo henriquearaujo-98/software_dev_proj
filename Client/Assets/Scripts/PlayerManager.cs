@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] DamageIndicator DamageIndicator;
     [SerializeField] GameObject DamageFrom;
     Transform DamageFromTransform;
+    [SerializeField] Animator canvasAnim;
+ 
     
 
     public void Initialize(int _id, string _username)
@@ -55,5 +57,10 @@ public class PlayerManager : MonoBehaviour
     {
         model.enabled = true;
         SetHealth(maxHealth);
+    }
+
+    public void showHitmarker()
+    {
+        canvasAnim.Play("Hitmarker", 0, 0f);
     }
 }
