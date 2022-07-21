@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public string name;
+    public int id;
     public int maxAmmoInMagazine;
     public int currAmmo;
     public int TotalAmmo;
@@ -24,6 +24,9 @@ public class Weapon : MonoBehaviour
     public Vector3 viewDirection;
 
     bool automaticControl = true;
+
+
+    [SerializeField] Player owner;
 
 
     // Start is called before the first frame update
@@ -77,8 +80,7 @@ public class Weapon : MonoBehaviour
         {
             if (_hit.collider.CompareTag("Player"))
             {
-                
-                _hit.collider.GetComponent<Player>().TakeDamage(damage, transform.position);
+                _hit.collider.GetComponent<Player>().TakeDamage(damage, owner, this);
             }
         }
 

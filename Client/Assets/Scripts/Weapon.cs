@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public string name;
+    public int id;
     public int maxAmmoInMagazine;
     public int currAmmo;
     public int TotalAmmo;

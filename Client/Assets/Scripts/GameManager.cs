@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
 
+    public List<Weapon> weapons; // Make sure weapon's ID correspond to their index on this list. Also that client and server are synch
+
     private void Awake()
     {
         if (instance == null)

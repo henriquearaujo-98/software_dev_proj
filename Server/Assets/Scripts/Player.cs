@@ -36,10 +36,12 @@ public class Player : MonoBehaviour
     public void Initialize(int _id, string _username)
     {
         id = _id;
-        username = _username;
+        username = username == "" ? "Player"+id : _username;
         health = maxHealth;
         currentWeapon = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
+
         inputs = new bool[9];
+
     }
 
     public void FixedUpdate()
@@ -49,9 +51,11 @@ public class Player : MonoBehaviour
 
         currentWeapon.getButton = inputs[7];
 
+
         if(inputs[8]){
             StartCoroutine(currentWeapon.Reload());
         }
+
         
         InputController();
     }
@@ -115,7 +119,7 @@ public class Player : MonoBehaviour
         currentWeapon.shootOrigin = shootOrigin;
     }
 
-    public void TakeDamage(float _damage, Vector3 damageFrom)
+    public void TakeDamage(float _damage, Player _fromPlayer, Weapon weapon)
     {
         if (health <= 0f)
         {
@@ -125,18 +129,34 @@ public class Player : MonoBehaviour
         health -= _damage;
         if (health <= 0f)
         {
-            health = 0f;
-            controller.enabled = false;
-            transform.position = new Vector3(0f, 25f, 0f); //Respawn position
-            ServerSend.PlayerPosition(this);
-            StartCoroutine(Respawn());
+            Die();
+            KillFeed(_fromPlayer, weapon);
         }
 
-        ServerSend.PlayerHealth(this, damageFrom);
+        ServerSend.PlayerHealth(this, _fromPlayer.transform.position);
+    }
+
+    private void KillFeed(Player _fromPlayer, Weapon _weapon)
+    {
+        Debug.Log($"{_fromPlayer.username} [{_weapon.name}] {this.username}");
+        Debug.Log("Weapon ID: " + _weapon.id);
+
+        ServerSend.KillFeed(_fromPlayer, _weapon, this);
+    }
+
+    private void Die()
+    {
+        health = 0f;
+        controller.enabled = false;
+        StartCoroutine(Respawn());
     }
 
     private IEnumerator Respawn()
     {
+        transform.position = new Vector3(0f, 25f, 0f); //Respawn position
+        ServerSend.PlayerPosition(this);
+        
+
         yield return new WaitForSeconds(5f);
 
         health = maxHealth;

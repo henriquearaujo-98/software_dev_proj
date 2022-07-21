@@ -149,5 +149,17 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void KillFeed(Player _fromPlayer, Weapon _weapon, Player _victimPlayer)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.killFeed))
+        {
+            _packet.Write(_fromPlayer.id);
+            _packet.Write(_weapon.id);
+            _packet.Write(_victimPlayer.id);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
     #endregion
 }

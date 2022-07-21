@@ -242,4 +242,4 @@ MonoBehaviour:
   maxHealth: 100
   model: {fileID: 2057015395552957302}
   DamageIndicator: {fileID: 0}
-  DamageFrom: {fileID: 0}
+  DamageFrom: {fileID: 1852112118474511805, guid: 1e2352dc9ffeb6149aff4799909e47e2, type: 3}
