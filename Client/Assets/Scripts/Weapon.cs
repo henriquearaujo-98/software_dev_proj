@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Weapon : MonoBehaviour
 {
@@ -18,9 +19,16 @@ public class Weapon : MonoBehaviour
     public bool isWalking = true;
 
     public float nextFire;
+
     public ParticleSystem ImpactPoint;
 
     public Text ammoUI;
+
+    public AudioClip shootingSound;
+    public AudioClip reloadingSound;
+
+    public AudioSource audioSource;
+
 
     private Transform shootOrigin;
     public ParticleSystem MuzzleFlash;
@@ -37,8 +45,7 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currAmmo = maxAmmoInMagazine;
-       
+        currAmmo = maxAmmoInMagazine;   
     }
 
     // Update is called once per frame
@@ -79,6 +86,7 @@ public class Weapon : MonoBehaviour
         if (fireRate == 0 && Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
+            
         }
         UpdateAmmoUI();
     }
@@ -107,6 +115,7 @@ public class Weapon : MonoBehaviour
         }
 
         anim.Play("Fire Hip", 0, 0f);
+        audioSource.PlayOneShot(shootingSound);
     }
 
     IEnumerator Reload()
@@ -134,6 +143,7 @@ public class Weapon : MonoBehaviour
         }
 
         anim.SetBool("Reload", false);
+        audioSource.PlayOneShot(reloadingSound);
 
         isReloading = false;
 
