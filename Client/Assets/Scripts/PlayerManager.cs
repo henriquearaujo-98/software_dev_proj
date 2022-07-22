@@ -13,14 +13,17 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] GameObject DamageFrom;
     Transform DamageFromTransform;
     [SerializeField] Animator canvasAnim;
- 
-    
+    PlayerController pc;
+
+
 
     public void Initialize(int _id, string _username)
     {
         id = _id;
         username = _username;
         health = maxHealth;
+
+        pc = GetComponent<PlayerController>();
     }
 
     public void SetHealth(float _health)
@@ -33,20 +36,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void SetDamageIndicator(Vector3 _damageFrom)
-    {
-        GameObject temp = Instantiate(DamageFrom, _damageFrom, Quaternion.identity);
-        DamageFromTransform = temp.transform;
-        Invoke("RegisterDamageIndicator", 0f);
-    }
-
-    void RegisterDamageIndicator()
-    {
-        if (!DI_System.CheckIfObjectInSight(DamageFromTransform))
-        {
-            DI_System.CreateIndicator(DamageFromTransform);
-        }
-    }
+    
 
     public void Die()
     {

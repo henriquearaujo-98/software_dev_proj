@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public List<Weapon> weapons; // Make sure weapon's ID correspond to their index on this list. Also that client and server are synch
 
+    public PlayerController myPlayer;
+
     private void Awake()
     {
         if (instance == null)
@@ -45,5 +47,10 @@ public class GameManager : MonoBehaviour
 
         _player.GetComponent<PlayerManager>().Initialize(_id, _username);
         players.Add(_id, _player.GetComponent<PlayerManager>());
+
+        if (_player.GetComponent<PlayerController>())
+        {
+            myPlayer = _player.GetComponent<PlayerController>();
+        }
     }
 }

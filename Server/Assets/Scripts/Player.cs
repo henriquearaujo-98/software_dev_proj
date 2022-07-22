@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
             KillFeed(_fromPlayer, weapon);
         }
 
-        ServerSend.PlayerHealth(this, _fromPlayer.transform.position);
+        ServerSend.PlayerHealth(this, _fromPlayer);
     }
 
     private void KillFeed(Player _fromPlayer, Weapon _weapon)
