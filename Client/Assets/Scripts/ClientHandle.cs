@@ -91,4 +91,16 @@ public class ClientHandle : MonoBehaviour
 
         Debug.Log($"{GameManager.players[_fromPlayer].username} [{GameManager.instance.weapons[_weapon].name}] {GameManager.players[_victimPlayer].username}");
     }
+
+    public static void PlayerInputs(Packet _packet)
+    {
+        int _fromPlayer = _packet.ReadInt();
+        bool[] _inputs = new bool[_packet.ReadInt()];
+        for (int i = 0; i < _inputs.Length; i++)
+        {
+            _inputs[i] = _packet.ReadBool();
+        }
+
+        GameManager.players[_fromPlayer].serverInputs = _inputs;
+    }
 }

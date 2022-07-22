@@ -10,6 +10,7 @@ public enum ServerPackets
     welcome = 1,
     udpTest,
     spawnPlayer,
+    playerInputs,
     playerPosition,
     playerRotation,
     playerDisconnected,

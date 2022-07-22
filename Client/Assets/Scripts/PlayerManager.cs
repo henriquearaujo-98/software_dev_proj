@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     Transform DamageFromTransform;
     [SerializeField] Animator canvasAnim;
     PlayerController pc;
+    public bool[] serverInputs; //inputs of this player on the server
 
 
 

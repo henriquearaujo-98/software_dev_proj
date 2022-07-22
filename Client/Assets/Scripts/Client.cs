@@ -281,6 +281,7 @@ public class Client : MonoBehaviour
             { (int)ServerPackets.playerHealth, ClientHandle.PlayerHealth },
             { (int)ServerPackets.playerRespawned, ClientHandle.PlayerRespawned },
             { (int)ServerPackets.killFeed, ClientHandle.KillFeed },
+            { (int)ServerPackets.playerInputs, ClientHandle.PlayerInputs },
             
         };
         Debug.Log("Initialized packets.");

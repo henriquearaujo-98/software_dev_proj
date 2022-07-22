@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
 
         
         InputController();
+        ServerSend.PlayerInputs(this, inputs);
     }
 
     private void InputController()

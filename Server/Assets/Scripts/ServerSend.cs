@@ -161,5 +161,22 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void PlayerInputs(Player _player, bool[] _inputs)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.playerInputs))
+        {
+
+            _packet.Write(_player.id);
+            _packet.Write(_inputs.Length);
+            foreach (bool _input in _inputs)
+            {
+                _packet.Write(_input);
+            }
+
+
+            SendTCPDataToAllExeptOne(_player.id,_packet);
+        }
+    }
     #endregion
 }
