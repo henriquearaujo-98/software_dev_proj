@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip walkingSound;
+
+    public AudioSource audioSource;
 
     [SerializeField] Transform camTransform;
     [SerializeField] WeaponSwitching weaponHolder;
@@ -23,6 +27,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             weaponHolder.weapons[weaponHolder.selectedWeapon].gameObject.GetComponent<Weapon>().isWalking = true;
+            StartCoroutine(WalkingSound());
         }
         else
         {
@@ -49,5 +54,11 @@ public class PlayerController : MonoBehaviour
         };
 
         ClientSend.PlayerMovement(_inputs);
+    }
+
+    IEnumerator WalkingSound()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        audioSource.PlayOneShot(walkingSound);
     }
 }
