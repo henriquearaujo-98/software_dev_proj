@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Transform camTransform;
     [SerializeField] WeaponSwitching weaponHolder;
+    [SerializeField] DamageIndicator DamageIndicator;
+    [SerializeField] GameObject DamageFrom;
+    Transform DamageFromTransform;
 
     private void Update()
     {
@@ -49,5 +52,16 @@ public class PlayerController : MonoBehaviour
         };
 
         ClientSend.PlayerMovement(_inputs);
+    }
+
+    public void RegisterDamageIndicator(Vector3 _from)
+    {
+
+        GameObject temp = Instantiate(DamageFrom, _from, Quaternion.identity);
+        DamageFromTransform = temp.transform;
+
+
+        DI_System.CreateIndicator(DamageFromTransform);
+        
     }
 }
