@@ -136,7 +136,7 @@ public class ServerSend
             _packet.Write(_player.health);
             _packet.Write(_damageFrom.id);
 
-            SendTCPDataToAll(_packet);
+            SendTCPData(_player.id, _packet);
         }
     }
 

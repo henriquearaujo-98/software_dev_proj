@@ -60,7 +60,6 @@ public class PlayerController : MonoBehaviour
         GameObject temp = Instantiate(DamageFrom, _from, Quaternion.identity);
         DamageFromTransform = temp.transform;
 
-
         DI_System.CreateIndicator(DamageFromTransform);
         
     }

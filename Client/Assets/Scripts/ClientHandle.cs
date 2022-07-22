@@ -71,6 +71,7 @@ public class ClientHandle : MonoBehaviour
         int _damageFrom = _packet.ReadInt();
 
         GameManager.players[_id].SetHealth(_health);
+        
         GameManager.instance.myPlayer.RegisterDamageIndicator(GameManager.players[_damageFrom].transform.position);
     }
 
