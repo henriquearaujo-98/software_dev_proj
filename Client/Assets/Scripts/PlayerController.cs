@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public AudioClip walkingSound;
-
-    public AudioSource audioSource;
+    public AudioClip[] footStepsAudioClips;
+    float footStepTimer;
+    AudioSource audioSource;
 
     [SerializeField] Transform camTransform;
     [SerializeField] WeaponSwitching weaponHolder;
@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             ClientSend.PlayerShoot(camTransform.forward);
-            Debug.Log(camTransform.forward);
         }
     }
 
@@ -30,7 +29,6 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             weaponHolder.weapons[weaponHolder.selectedWeapon].gameObject.GetComponent<Weapon>().isWalking = true;
-            StartCoroutine(WalkingSound());
         }
         else
         {
@@ -70,10 +68,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    IEnumerator WalkingSound()
+    public void FootStepsHandler()
     {
-        yield return new WaitForSecondsRealtime(2f);
-        audioSource.PlayOneShot(walkingSound);
+
+        
 
     }
 }

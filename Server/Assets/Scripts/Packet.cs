@@ -14,6 +14,7 @@ public enum ServerPackets
     playerRotation,
     playerDisconnected,
     playerHealth,
+    damageIndicator,
     playerRespawned,
     killFeed
 }

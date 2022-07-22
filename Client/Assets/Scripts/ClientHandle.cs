@@ -68,10 +68,15 @@ public class ClientHandle : MonoBehaviour
     {
         int _id = _packet.ReadInt();
         float _health = _packet.ReadFloat();
-        int _damageFrom = _packet.ReadInt();
 
         GameManager.players[_id].SetHealth(_health);
-        
+
+    }
+
+    public static void DamageIndicator(Packet _packet)
+    {
+        int _damageFrom = _packet.ReadInt();
+
         GameManager.instance.myPlayer.RegisterDamageIndicator(GameManager.players[_damageFrom].transform.position);
     }
 
