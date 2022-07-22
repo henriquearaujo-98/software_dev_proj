@@ -3,6 +3,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -17,7 +18,9 @@ public class Weapon : MonoBehaviour
     public bool isWalking = true;
 
     public float nextFire;
-    public ParticleSystem ImpactPoint; 
+    public ParticleSystem ImpactPoint;
+
+    public Text ammoUI;
 
     private Transform shootOrigin;
     public ParticleSystem MuzzleFlash;
@@ -77,6 +80,7 @@ public class Weapon : MonoBehaviour
         {
             Shoot();
         }
+        UpdateAmmoUI();
     }
 
     void Shoot(){
@@ -133,6 +137,11 @@ public class Weapon : MonoBehaviour
 
         isReloading = false;
 
+    }
+
+    public void UpdateAmmoUI()
+    {
+        ammoUI.text = currAmmo + "/" + TotalAmmo;
     }
 
 }

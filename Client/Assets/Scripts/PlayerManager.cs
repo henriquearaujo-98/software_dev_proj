@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -13,8 +14,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] GameObject DamageFrom;
     Transform DamageFromTransform;
     [SerializeField] Animator canvasAnim;
+
     PlayerController pc;
     public bool[] serverInputs; //inputs of this player on the server
+
 
 
 
