@@ -60,7 +60,7 @@ public class ClientHandle : MonoBehaviour
     {
         int _id = _packet.ReadInt();
         Quaternion _rotation = _packet.ReadQuaternion();
-
+        Debug.Log(_id + "-" +_rotation);
         GameManager.players[_id].transform.rotation = _rotation;
     }
 
@@ -107,6 +107,6 @@ public class ClientHandle : MonoBehaviour
             _inputs[i] = _packet.ReadBool();
         }
 
-        GameManager.players[_fromPlayer].serverInputs = _inputs;
+        GameManager.players[_fromPlayer].gameObject.GetComponent<Enemy>().serverInputs = _inputs;
     }
 }

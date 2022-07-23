@@ -10,13 +10,10 @@ public class PlayerManager : MonoBehaviour
     public float health;
     public float maxHealth = 100f;
     public MeshRenderer model;
-    [SerializeField] DamageIndicator DamageIndicator;
-    [SerializeField] GameObject DamageFrom;
-    Transform DamageFromTransform;
     [SerializeField] Animator canvasAnim;
 
     PlayerController pc;
-    public bool[] serverInputs; //inputs of this player on the server
+    
 
 
 
@@ -45,6 +42,11 @@ public class PlayerManager : MonoBehaviour
     public void Die()
     {
         model.enabled = false;
+
+        if (GetComponent<Enemy>())
+        {
+            GetComponent<Enemy>().SpawnOnDeath();
+        }
     }
 
     public void Respawn()

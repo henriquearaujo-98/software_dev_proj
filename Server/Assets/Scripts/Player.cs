@@ -111,6 +111,7 @@ public class Player : MonoBehaviour
     {
         inputs = _inputs;
         transform.rotation = _rotation;
+        Debug.Log(_rotation);
     }
 
     public void Shoot(Vector3 _viewDirection)
@@ -156,6 +157,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator Respawn()
     {
+        yield return new WaitForSeconds(0.5f);
+
         transform.position = new Vector3(0f, 25f, 0f); //Respawn position
         ServerSend.PlayerPosition(this);
         
