@@ -44,6 +44,7 @@ public class Weapon : MonoBehaviour
     public float ADSSpeed = 8f;
     float initialZoom;
     public float aimZoom = 45;
+    public GameObject crosshair;
 
     private void Awake() {
         shootOrigin = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
@@ -65,12 +66,14 @@ public class Weapon : MonoBehaviour
             transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * ADSSpeed);
             isAiming = true;
             playerCam.fieldOfView = Mathf.Lerp(playerCam.fieldOfView, aimZoom, Time.deltaTime * ADSSpeed);
+            crosshair.SetActive(false);
             Debug.Log("aiming");
         }
         else
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * ADSSpeed);
             playerCam.fieldOfView = Mathf.Lerp(playerCam.fieldOfView,initialZoom, Time.deltaTime * ADSSpeed);
+            crosshair.SetActive(true);
             isAiming = false;
         }
     }
