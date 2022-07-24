@@ -35,23 +35,49 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] PlayerManager owner;
 
-    Animator anim;
+    public Animator anim;
+
+    private Vector3 originalPosition;
+    public Vector3 aimPosition;
+    private bool isAiming;
+    Camera playerCam;
+    public float ADSSpeed = 8f;
+    float initialZoom;
+    public float aimZoom = 45;
 
     private void Awake() {
         shootOrigin = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
-        anim = GetComponent<Animator>();
+        playerCam = shootOrigin.gameObject.GetComponent<Camera>();
+        initialZoom = playerCam.fieldOfView;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         currAmmo = maxAmmoInMagazine;   
+        originalPosition = transform.localPosition;
+    }
+
+    private void AimDownSights()
+    {
+        if(Input.GetKey(KeyCode.F) && !isReloading)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * ADSSpeed);
+            isAiming = true;
+            playerCam.fieldOfView = Mathf.Lerp(playerCam.fieldOfView, aimZoom, Time.deltaTime * ADSSpeed);
+            Debug.Log("aiming");
+        }
+        else
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * ADSSpeed);
+            playerCam.fieldOfView = Mathf.Lerp(playerCam.fieldOfView,initialZoom, Time.deltaTime * ADSSpeed);
+            isAiming = false;
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if (isWalking)
             anim.SetBool("Walk", true);
         else
@@ -76,6 +102,10 @@ public class Weapon : MonoBehaviour
             nextFire = Time.time + fireRate;
             Shoot ();
         }
+        anim.SetBool("Aim", isAiming);
+        AimDownSights();
+
+        
     }
 
     private void Update()
@@ -89,6 +119,7 @@ public class Weapon : MonoBehaviour
             
         }
         UpdateAmmoUI();
+        
     }
 
     void Shoot(){

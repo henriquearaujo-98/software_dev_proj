@@ -579,7 +579,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d33a623991797144db6732129130c9ce, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -609,7 +609,15 @@ MonoBehaviour:
   isWalking: 1
   nextFire: 0
   ImpactPoint: {fileID: 19800002, guid: 627bfa08ce624ab40ab2fea71785b5f0, type: 3}
+  ammoUI: {fileID: 0}
+  shootingSound: {fileID: 0}
+  reloadingSound: {fileID: 0}
+  audioSource: {fileID: 0}
   MuzzleFlash: {fileID: 2576442271253471669}
+  owner: {fileID: 0}
+  anim: {fileID: 0}
+  aimPosition: {x: 0, y: 0, z: 0}
+  ADSSpeed: 1
 --- !u!1 &2519514737718554881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,13 +2422,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e9c50938e32351438a7df9ccad2f2a5, type: 3}
---- !u!4 &2576442271271822583 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400006, guid: 7e9c50938e32351438a7df9ccad2f2a5, type: 3}
-  m_PrefabInstance: {fileID: 2576442271271698033}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &2576442271253471669 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 19800004, guid: 7e9c50938e32351438a7df9ccad2f2a5, type: 3}
+  m_PrefabInstance: {fileID: 2576442271271698033}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2576442271271822583 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400006, guid: 7e9c50938e32351438a7df9ccad2f2a5, type: 3}
   m_PrefabInstance: {fileID: 2576442271271698033}
   m_PrefabAsset: {fileID: 0}
