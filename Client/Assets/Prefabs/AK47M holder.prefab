@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7386647714137296103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6175225764967772689}
+  - component: {fileID: 5791338026372658683}
+  m_Layer: 0
+  m_Name: AK47M holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6175225764967772689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386647714137296103}
+  m_LocalRotation: {x: 0.027756196, y: 0.0087231975, z: -0.00024222488, w: 0.9995766}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8879387716561010056}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 3.181, y: 1, z: 0}
+--- !u!114 &5791338026372658683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386647714137296103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 524777af654464993a584e4d046c2ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  maxAmmoInMagazine: 30
+  currAmmo: 30
+  TotalAmmo: 160
+  fireRate: 0.125
+  reloadTime: 1
+  isReloading: 0
+  isWalking: 1
+  nextFire: 0
+  ImpactPoint: {fileID: 19800002, guid: 627bfa08ce624ab40ab2fea71785b5f0, type: 3}
+  ammoUI: {fileID: 0}
+  shootingSound: {fileID: 8300000, guid: 8581f806dddef8046b4942de05b897be, type: 3}
+  reloadingSound: {fileID: 8300000, guid: d55a53aecff3149fbb2f46b0b9709e62, type: 3}
+  audioSource: {fileID: 0}
+  MuzzleFlash: {fileID: 5529337160424821947}
+  owner: {fileID: 0}
+  anim: {fileID: 5740098538878699537}
+  aimPosition: {x: -0.3999981, y: 0.1783162, z: -0.005145777}
+  ADSSpeed: 8
+  aimZoom: 45
+--- !u!1001 &9002380540568321692
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6175225764967772689}
+    m_Modifications:
+    - target: {fileID: 564935065325486868, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564935065325486868, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.033
+      objectReference: {fileID: 0}
+    - target: {fileID: 564935065325486868, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564935065325486868, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 564935065325486868, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999121
+      objectReference: {fileID: 0}
+    - target: {fileID: 564935065325486868, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00086417224
+      objectReference: {fileID: 0}
+    - target: {fileID: 564935065325486868, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.011677089
+      objectReference: {fileID: 0}
+    - target: {fileID: 564935065325486868, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0062319553
+      objectReference: {fileID: 0}
+    - target: {fileID: 564935065325486868, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564935065325486868, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564935065325486868, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 908845172443519406, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_Name
+      value: AK47M
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+--- !u!4 &8879387716561010056 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 564935065325486868, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+  m_PrefabInstance: {fileID: 9002380540568321692}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5740098538878699537 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3694654094337390221, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+  m_PrefabInstance: {fileID: 9002380540568321692}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5529337160424821947 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3482065079276120615, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+  m_PrefabInstance: {fileID: 9002380540568321692}
+  m_PrefabAsset: {fileID: 0}
