@@ -40,12 +40,15 @@ public class Weapon : MonoBehaviour
     private Vector3 originalPosition;
     public Vector3 aimPosition;
     private bool isAiming;
-
+    Camera playerCam;
     public float ADSSpeed = 8f;
+    float initialZoom;
+    public float aimZoom = 45;
 
     private void Awake() {
         shootOrigin = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
-        
+        playerCam = shootOrigin.gameObject.GetComponent<Camera>();
+        initialZoom = playerCam.fieldOfView;
     }
 
     // Start is called before the first frame update
@@ -61,11 +64,13 @@ public class Weapon : MonoBehaviour
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * ADSSpeed);
             isAiming = true;
+            playerCam.fieldOfView = Mathf.Lerp(playerCam.fieldOfView, aimZoom, Time.deltaTime * ADSSpeed);
             Debug.Log("aiming");
         }
         else
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * ADSSpeed);
+            playerCam.fieldOfView = Mathf.Lerp(playerCam.fieldOfView,initialZoom, Time.deltaTime * ADSSpeed);
             isAiming = false;
         }
     }
