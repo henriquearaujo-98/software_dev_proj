@@ -37,6 +37,12 @@ public class Weapon : MonoBehaviour
 
     Animator anim;
 
+    private Vector3 originalPosition;
+    public Vector3 aimPosition;
+    private bool isAiming;
+
+    public float ADSSpeed = 1f;
+
     private void Awake() {
         shootOrigin = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
         anim = GetComponent<Animator>();
@@ -46,11 +52,29 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         currAmmo = maxAmmoInMagazine;   
+        originalPosition = transform.localPosition;
+    }
+
+    private void AimDownSights()
+    {
+        if(Input.GetKey(KeyCode.F) && !isReloading)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * ADSSpeed);
+            isAiming = true;
+            Debug.Log("aiming");
+        }
+        else
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * ADSSpeed);
+            isAiming = false;
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        anim = GetComponent<Animator>();
+
 
         if (isWalking)
             anim.SetBool("Walk", true);
@@ -76,6 +100,10 @@ public class Weapon : MonoBehaviour
             nextFire = Time.time + fireRate;
             Shoot ();
         }
+        anim.SetBool("Aim", isAiming);
+        AimDownSights();
+
+        
     }
 
     private void Update()
@@ -89,6 +117,7 @@ public class Weapon : MonoBehaviour
             
         }
         UpdateAmmoUI();
+        
     }
 
     void Shoot(){
