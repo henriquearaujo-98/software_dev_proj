@@ -165,15 +165,14 @@ public class Player : MonoBehaviour
     private void KillFeed(Player _fromPlayer, Weapon _weapon)
     {
         Debug.Log($"{_fromPlayer.username} [{_weapon.name}] {this.username}");
-        Debug.Log("Weapon ID: " + _weapon.id);
-
+        _fromPlayer.kills++;
+        this.deaths++;
         ServerSend.KillFeed(_fromPlayer, _weapon, this);
     }
 
     private void Die()
     {
         health = 0f;
-        deaths++;
         controller.enabled = false;
         StartCoroutine(Respawn());
     }

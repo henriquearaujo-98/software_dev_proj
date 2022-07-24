@@ -93,12 +93,16 @@ public class ClientHandle : MonoBehaviour
     public static void KillFeed(Packet _packet)
     {
         int _fromPlayer = _packet.ReadInt();
+        int _fromPlayer_Kills = _packet.ReadInt();
         int _weapon = _packet.ReadInt();
         int _victimPlayer = _packet.ReadInt();
-
-        Debug.Log("WeaponID: " + _weapon);
+        int _victimPlayer_Deaths = _packet.ReadInt();
 
         Debug.Log($"{GameManager.players[_fromPlayer].username} [{GameManager.instance.weapons[_weapon].name}] {GameManager.players[_victimPlayer].username}");
+
+
+        GameManager.players[_fromPlayer].kills = _fromPlayer_Kills;
+        GameManager.players[_victimPlayer].deaths = _victimPlayer_Deaths;
     }
 
     public static void PlayerInputs(Packet _packet)
@@ -112,5 +116,13 @@ public class ClientHandle : MonoBehaviour
 
         if (GameManager.players.ContainsKey(_fromPlayer))
             GameManager.players[_fromPlayer].gameObject.GetComponent<Enemy>().serverInputs = _inputs;
+    }
+
+    public static void KillNotification(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+
+        if (GameManager.players.ContainsKey(_id))
+            GameManager.players[_id].gameObject.GetComponent<PlayerController>().KillNotification();
     }
 }

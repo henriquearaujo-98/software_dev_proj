@@ -159,13 +159,22 @@ public class ServerSend
         }
     }
 
+
+    /// <summary>
+    /// Send information about a kill
+    /// </summary>
+    /// <param name="_fromPlayer"></param>
+    /// <param name="_weapon"></param>
+    /// <param name="_victimPlayer"></param>
     public static void KillFeed(Player _fromPlayer, Weapon _weapon, Player _victimPlayer)
     {
         using (Packet _packet = new Packet((int)ServerPackets.killFeed))
         {
             _packet.Write(_fromPlayer.id);
+            _packet.Write(_fromPlayer.kills);
             _packet.Write(_weapon.id);
             _packet.Write(_victimPlayer.id);
+            _packet.Write(_victimPlayer.deaths);
 
             SendTCPDataToAll(_packet);
         }
@@ -185,6 +194,16 @@ public class ServerSend
 
 
             SendTCPDataToAllExeptOne(_player.id,_packet);
+        }
+    }
+
+    public static void KillNotification(Player _player)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.killNotification))
+        {
+            // Add hitbox name
+            _packet.Write(_player.id);
+            SendTCPData(_player.id, _packet);
         }
     }
     #endregion

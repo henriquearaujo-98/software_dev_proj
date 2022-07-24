@@ -68,6 +68,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void KillNotification()
+    {
+        GetComponent<PlayerManager>().canvasAnim.Play("KillNofication", 1, 0f);
+    }
+
     public void FootStepsHandler()
     {
 

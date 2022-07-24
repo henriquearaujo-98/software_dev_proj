@@ -16,7 +16,8 @@ public enum ServerPackets
     playerHealth,
     damageIndicator,
     playerRespawned,
-    killFeed
+    killFeed,
+    killNotification
 }
 
 /// <summary>Sent from client to server.</summary>

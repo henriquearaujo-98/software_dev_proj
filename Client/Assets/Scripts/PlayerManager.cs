@@ -10,7 +10,9 @@ public class PlayerManager : MonoBehaviour
     public float health;
     public float maxHealth = 100f;
     public MeshRenderer model;
-    [SerializeField] Animator canvasAnim;
+    public int kills;
+    public int deaths;
+    public Animator canvasAnim;
 
     [SerializeField] PlayerController pc;
     
