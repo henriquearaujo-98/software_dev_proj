@@ -104,7 +104,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 564935065325486868}
-  - component: {fileID: 1902552239840251659}
   - component: {fileID: 3694654094337390221}
   m_Layer: 0
   m_Name: AK47M
@@ -130,29 +129,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1902552239840251659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908845172443519406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 524777af654464993a584e4d046c2ea6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: 
-  maxAmmoInMagazine: 30
-  currAmmo: 30
-  TotalAmmo: 160
-  fireRate: 0.125
-  reloadTime: 1
-  isReloading: 0
-  isWalking: 1
-  nextFire: 0
-  ImpactPoint: {fileID: 19800002, guid: 627bfa08ce624ab40ab2fea71785b5f0, type: 3}
-  MuzzleFlash: {fileID: 3482065079276120615}
 --- !u!95 &3694654094337390221
 Animator:
   serializedVersion: 3
@@ -2385,10 +2361,5 @@ PrefabInstance:
 --- !u!4 &3482065079260917607 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: eb553b67921c92649ac7dbbc561e2047, type: 3}
-  m_PrefabInstance: {fileID: 3482065079261050341}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &3482065079276120615 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19800002, guid: eb553b67921c92649ac7dbbc561e2047, type: 3}
   m_PrefabInstance: {fileID: 3482065079261050341}
   m_PrefabAsset: {fileID: 0}

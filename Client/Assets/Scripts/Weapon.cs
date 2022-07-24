@@ -35,17 +35,17 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] PlayerManager owner;
 
-    Animator anim;
+    public Animator anim;
 
     private Vector3 originalPosition;
     public Vector3 aimPosition;
     private bool isAiming;
 
-    public float ADSSpeed = 1f;
+    public float ADSSpeed = 8f;
 
     private void Awake() {
         shootOrigin = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
-        anim = GetComponent<Animator>();
+        
     }
 
     // Start is called before the first frame update
@@ -73,9 +73,6 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        anim = GetComponent<Animator>();
-
-
         if (isWalking)
             anim.SetBool("Walk", true);
         else
