@@ -80,7 +80,9 @@ public class Weapon : MonoBehaviour
         {
             if (_hit.collider.CompareTag("Player"))
             {
-                _hit.collider.GetComponent<Player>().TakeDamage(damage, owner, this);
+                float health = _hit.collider.GetComponent<Player>().TakeDamage(damage, owner, this);
+                if (health <= 0)
+                    owner.kills++;
             }
         }
 

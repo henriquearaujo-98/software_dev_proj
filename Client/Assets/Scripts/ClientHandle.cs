@@ -50,10 +50,11 @@ public class ClientHandle : MonoBehaviour
 
     public static void PlayerPosition(Packet _packet)
     {
-        
         int _id = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
-        GameManager.players[_id].transform.position = _position;
+
+        if (GameManager.players.ContainsKey(_id))
+            GameManager.players[_id].transform.position = _position;
     }
 
     public static void PlayerRotation(Packet _packet)
@@ -61,7 +62,9 @@ public class ClientHandle : MonoBehaviour
         int _id = _packet.ReadInt();
         Quaternion _rotation = _packet.ReadQuaternion();
         Debug.Log(_id + "-" +_rotation);
-        GameManager.players[_id].transform.rotation = _rotation;
+
+        if (GameManager.players.ContainsKey(_id))
+            GameManager.players[_id].transform.rotation = _rotation;
     }
 
     public static void PlayerHealth(Packet _packet)
@@ -107,6 +110,7 @@ public class ClientHandle : MonoBehaviour
             _inputs[i] = _packet.ReadBool();
         }
 
-        GameManager.players[_fromPlayer].gameObject.GetComponent<Enemy>().serverInputs = _inputs;
+        if (GameManager.players.ContainsKey(_fromPlayer))
+            GameManager.players[_fromPlayer].gameObject.GetComponent<Enemy>().serverInputs = _inputs;
     }
 }

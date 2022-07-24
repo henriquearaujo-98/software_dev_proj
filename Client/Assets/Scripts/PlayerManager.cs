@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     public MeshRenderer model;
     [SerializeField] Animator canvasAnim;
 
-    PlayerController pc;
+    [SerializeField] PlayerController pc;
     
 
 
@@ -23,8 +23,6 @@ public class PlayerManager : MonoBehaviour
         id = _id;
         username = _username;
         health = maxHealth;
-
-        pc = GetComponent<PlayerController>();
     }
 
     public void SetHealth(float _health)
@@ -41,8 +39,6 @@ public class PlayerManager : MonoBehaviour
 
     public void Die()
     {
-        model.enabled = false;
-
         if (GetComponent<Enemy>())
         {
             GetComponent<Enemy>().SpawnOnDeath();
@@ -51,7 +47,6 @@ public class PlayerManager : MonoBehaviour
 
     public void Respawn()
     {
-        model.enabled = true;
         SetHealth(maxHealth);
     }
 

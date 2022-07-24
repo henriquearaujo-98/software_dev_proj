@@ -237,6 +237,8 @@ public class Client : MonoBehaviour
                 ServerSend.SpawnPlayer(_client.id, player);
             }
         }
+
+        player.sendUpdates = true;
     }
 
     /// <summary>Disconnects the client and stops all network traffic.</summary>

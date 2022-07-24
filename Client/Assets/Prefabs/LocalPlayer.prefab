@@ -822,7 +822,7 @@ MonoBehaviour:
   maxHealth: 100
   model: {fileID: 2057015395552957302}
   canvasAnim: {fileID: 1049704125707708746}
-  serverInputs: 
+  pc: {fileID: 5434416808760898683}
 --- !u!114 &5434416808760898683
 MonoBehaviour:
   m_ObjectHideFlags: 0

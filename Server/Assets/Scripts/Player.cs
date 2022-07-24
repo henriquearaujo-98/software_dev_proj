@@ -23,6 +23,12 @@ public class Player : MonoBehaviour
     public WeaponSwitching weaponSwitching;
     public Weapon currentWeapon;
 
+    [Header("Player stats")]
+    public int deaths;
+    public int kills;
+
+    public bool sendUpdates = false;
+
     private void Start()
     {
         controller = this.GetComponent<CharacterController>();
@@ -39,7 +45,8 @@ public class Player : MonoBehaviour
         username = username == "" ? "Player"+id : _username;
         health = maxHealth;
         currentWeapon = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
-
+        deaths = 0;
+        kills = 0;
         inputs = new bool[9];
 
     }
@@ -58,7 +65,14 @@ public class Player : MonoBehaviour
 
         
         InputController();
-        ServerSend.PlayerInputs(this, inputs);
+
+        if (sendUpdates)
+        {
+            ServerSend.PlayerPosition(this);
+            ServerSend.PlayerRotation(this);
+            ServerSend.PlayerInputs(this, inputs);
+        }
+        
     }
 
     private void InputController()
@@ -102,8 +116,7 @@ public class Player : MonoBehaviour
         _moveDirection.y = yVelocity;
         controller.Move(_moveDirection);
 
-        ServerSend.PlayerPosition(this);
-        ServerSend.PlayerRotation(this);
+        
     }
 
 
@@ -121,11 +134,18 @@ public class Player : MonoBehaviour
         currentWeapon.shootOrigin = shootOrigin;
     }
 
-    public void TakeDamage(float _damage, Player _fromPlayer, Weapon weapon)
+    /// <summary>
+    /// Used to take away health, based on weapon damage
+    /// </summary>
+    /// <param name="_damage"></param>
+    /// <param name="_fromPlayer"></param>
+    /// <param name="weapon"></param>
+    /// <returns>Player health after taking damage</returns>
+    public float TakeDamage(float _damage, Player _fromPlayer, Weapon weapon)
     {
         if (health <= 0f)
         {
-            return;
+            return health;
         }
 
         health -= _damage;
@@ -137,6 +157,8 @@ public class Player : MonoBehaviour
 
         ServerSend.PlayerHealth(this);
         ServerSend.DamageIndicator(this, _fromPlayer);
+
+        return health;
 
     }
 
@@ -151,6 +173,7 @@ public class Player : MonoBehaviour
     private void Die()
     {
         health = 0f;
+        deaths++;
         controller.enabled = false;
         StartCoroutine(Respawn());
     }

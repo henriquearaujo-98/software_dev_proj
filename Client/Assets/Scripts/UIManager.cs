@@ -28,8 +28,5 @@ public class UIManager : MonoBehaviour
         startMenu.SetActive(false);
         usernameField.interactable = false;
         Client.instance.ConnectToServer();
-
-        if (Client.instance.tcp.socket != null)
-            Debug.Log("Connected");
     }
 }

@@ -52,5 +52,7 @@ public class GameManager : MonoBehaviour
         {
             myPlayer = _player.GetComponent<PlayerController>();
         }
+
+        
     }
 }
