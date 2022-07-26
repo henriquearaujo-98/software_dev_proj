@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 108.00002, y: -9.075}
+  m_AnchoredPosition: {x: 92.4, y: -49.999996}
   m_SizeDelta: {x: 300, y: 18.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3164780984601650893
@@ -154,4 +154,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Player 2 [AK47M] Player 1
