@@ -81,10 +81,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isWalking)
-            anim.SetBool("Walk", true);
-        else
-            anim.SetBool("Walk", false);
+       
 
         if (isReloading)
             return;
@@ -95,18 +92,7 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        if(Input.GetKeyDown(KeyCode.R) && currAmmo != maxAmmoInMagazine && TotalAmmo>0){
-           StartCoroutine(Reload());
-            return;
-        }
-
-        if(Input.GetKey(KeyCode.Mouse0) && Time.time > nextFire && fireRate > 0)
-        {                  
-            nextFire = Time.time + fireRate;
-            Shoot ();
-        }
-        anim.SetBool("Aim", isAiming);
-        AimDownSights();
+        
 
         
     }
@@ -114,13 +100,37 @@ public class Weapon : MonoBehaviour
     private void Update()
     {
         if (isReloading)
+        {
+            anim.Play("Reload w bullets");
             return;
+        }
+            
+
+        if (isWalking)
+            anim.SetBool("Walk", true);
+        else
+            anim.SetBool("Walk", false);
 
         if (fireRate == 0 && Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
             
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && currAmmo != maxAmmoInMagazine && TotalAmmo > 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+
+        if (Input.GetKey(KeyCode.Mouse0) && Time.time > nextFire && fireRate > 0)
+        {
+            nextFire = Time.time + fireRate;
+            Shoot();
+        }
+        anim.SetBool("Aim", isAiming);
+        AimDownSights();
+
         UpdateAmmoUI();
         
     }
