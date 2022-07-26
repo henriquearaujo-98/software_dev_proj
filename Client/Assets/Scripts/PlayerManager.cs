@@ -14,7 +14,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] GameObject DamageFrom;
     Transform DamageFromTransform;
     [SerializeField] Animator canvasAnim;
-    
+    public KillFeedHandler killFeedHandler;
+
 
     public void Initialize(int _id, string _username)
     {
