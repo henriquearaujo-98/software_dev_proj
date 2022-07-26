@@ -96,7 +96,14 @@ public class ClientHandle : MonoBehaviour
         int _fromPlayer_Kills = _packet.ReadInt();
         int _weapon = _packet.ReadInt();
         int _victimPlayer = _packet.ReadInt();
+
         int _victimPlayer_Deaths = _packet.ReadInt();
+
+
+        string _killfeedtext = $"{GameManager.players[_fromPlayer].username} [{GameManager.instance.weapons[_weapon].name}] {GameManager.players[_victimPlayer].username}";
+
+        GameManager.players[Client.instance.myId].killFeedHandler.InstantiateKillFeedItem(_killfeedtext);
+
 
         Debug.Log($"{GameManager.players[_fromPlayer].username} [{GameManager.instance.weapons[_weapon].name}] {GameManager.players[_victimPlayer].username}");
 
