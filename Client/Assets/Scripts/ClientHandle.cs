@@ -31,9 +31,12 @@ public class ClientHandle : MonoBehaviour
     {
         
         int _id = _packet.ReadInt();
-        Debug.Log($"Player {GameManager.players[_id].GetComponent<PlayerManager>().username} has disconnected.");
+        string msg = $"Player {GameManager.players[_id].GetComponent<PlayerManager>().username} has disconnected.";
+        Debug.Log(msg);
         Destroy(GameManager.players[_id].gameObject);
         GameManager.players.Remove(_id);
+
+        GameManager.players[Client.instance.myId].killFeedHandler.InstantiateKillFeedItem(msg);
     }
     #endregion
 
@@ -44,8 +47,12 @@ public class ClientHandle : MonoBehaviour
         string username = packet.ReadString();
         Vector3 position = packet.ReadVector3();
         Quaternion rotation = packet.ReadQuaternion();
-
+        string msg = $"{username} has joined the game.";
+        
         GameManager.instance.SpawnPlayer(id, username, position, rotation);
+
+        if(GameManager.players.ContainsKey(Client.instance.myId))
+            GameManager.players[Client.instance.myId].killFeedHandler.InstantiateKillFeedItem(msg);
     }
 
     public static void PlayerPosition(Packet _packet)

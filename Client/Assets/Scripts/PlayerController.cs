@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] DamageIndicator DamageIndicator;
     [SerializeField] GameObject DamageFrom;
     Transform DamageFromTransform;
+    [SerializeField] private Image foregroundImage;
 
     private void Update()
     {
@@ -21,6 +23,8 @@ public class PlayerController : MonoBehaviour
         {
             ClientSend.PlayerShoot(camTransform.forward);
         }
+
+        HealthBar();
     }
 
     private void FixedUpdate()
@@ -78,5 +82,11 @@ public class PlayerController : MonoBehaviour
 
         
 
+    }
+
+    public void HealthBar()
+    {
+        float healthPer = GetComponent<PlayerManager>().health / GetComponent<PlayerManager>().maxHealth;
+        foregroundImage.fillAmount = healthPer;
     }
 }
