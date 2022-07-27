@@ -553,7 +553,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8584786931390803745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 686.3504, y: 245.31166, z: -23.182144}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5257290933590732372}
@@ -582,6 +582,9 @@ MonoBehaviour:
   deaths: 0
   canvasAnim: {fileID: 0}
   pc: {fileID: 0}
+  DamageIndicator: {fileID: 0}
+  DamageFrom: {fileID: 0}
+  killFeedHandler: {fileID: 0}
 --- !u!114 &6086144678601781948
 MonoBehaviour:
   m_ObjectHideFlags: 0

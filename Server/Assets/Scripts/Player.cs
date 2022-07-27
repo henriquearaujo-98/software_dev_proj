@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
 
     public bool sendUpdates = false;
 
+    [SerializeField] Animator anim;
+
     private void Start()
     {
         controller = this.GetComponent<CharacterController>();
@@ -56,6 +58,8 @@ public class Player : MonoBehaviour
         if (health < 1)
             return;
 
+        AnimationHandler();
+
         currentWeapon.getButton = inputs[7];
 
 
@@ -73,6 +77,31 @@ public class Player : MonoBehaviour
             ServerSend.PlayerInputs(this, inputs);
         }
         
+    }
+
+    void AnimationHandler()
+    {
+        anim.SetBool("Forward", inputs[0]);
+
+        anim.SetBool("Backwards", inputs[1]);
+
+
+        anim.SetBool("Left", inputs[2]);
+
+        anim.SetBool("Right", inputs[3]);
+
+        if (inputs[0] || inputs[1] || inputs[2] || inputs[3])
+        {
+            if (inputs[5])
+                anim.SetBool("Run", true);
+            else
+                anim.SetBool("Run", false);
+        }
+
+        if (inputs[7])
+            anim.Play("Shoot", 0, 0f);
+
+        //anim.SetBool("Grounded", controller.isGrounded);
     }
 
     private void InputController()
