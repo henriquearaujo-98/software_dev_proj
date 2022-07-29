@@ -153,7 +153,6 @@ public class Player : MonoBehaviour
     {
         inputs = _inputs;
         transform.rotation = _rotation;
-        Debug.Log(_rotation);
     }
 
     public void Shoot(Vector3 _viewDirection)
