@@ -76,14 +76,19 @@ public class Weapon : MonoBehaviour
         currAmmo--;
         
 
-       if (Physics.Raycast(shootOrigin.position, viewDirection, out RaycastHit _hit, 25f))
+       if (Physics.Raycast(shootOrigin.position, viewDirection, out RaycastHit _hit, 25f, LayerMask.GetMask("Hitbox")))
         {
-            if (_hit.collider.CompareTag("Player"))
-            {
-                float other_health = _hit.collider.GetComponent<Player>().TakeDamage(damage, owner, this);
-                if (other_health <= 0)
-                    ServerSend.KillNotification(owner);
-            }
+
+            if (_hit.collider.gameObject.GetComponent<Player>().id == owner.id)
+                return;
+
+            float damageMultiplier = _hit.collider.GetComponent<HitboxHandler>().damageMultiplier;
+            float other_health = _hit.collider.GetComponent<HitboxHandler>().playerScript.TakeDamage(damage * damageMultiplier, owner, this);
+            if (other_health <= 0)
+                ServerSend.KillNotification(owner);
+
+            Debug.Log(_hit.collider.GetComponent<HitboxHandler>().name);
+            
         }
 
         Debug.DrawRay(shootOrigin.position, viewDirection, Color.green, 2f);
