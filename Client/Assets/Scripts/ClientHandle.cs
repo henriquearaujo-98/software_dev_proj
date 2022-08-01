@@ -47,9 +47,10 @@ public class ClientHandle : MonoBehaviour
         string username = packet.ReadString();
         Vector3 position = packet.ReadVector3();
         Quaternion rotation = packet.ReadQuaternion();
+        int sceneID = packet.ReadInt();
         string msg = $"{username} has joined the game.";
         
-        GameManager.instance.SpawnPlayer(id, username, position, rotation);
+        GameManager.instance.SpawnPlayer(id, username, position, rotation, sceneID);
 
         if(GameManager.players.ContainsKey(Client.instance.myId))
             GameManager.players[Client.instance.myId].pc.killFeedHandler.InstantiateKillFeedItem(msg);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Client : MonoBehaviour
 {
@@ -214,6 +215,8 @@ public class Client : MonoBehaviour
     /// <param name="_playerName">The username of the new player.</param>
     public void SendIntoGame(string _playerName)
     {
+
+        int sceneID = SceneManager.GetActiveScene().buildIndex;
         player = NetworkManager.instance.InstantiatePlayer();
         player.Initialize(id, _playerName);
 
@@ -224,7 +227,7 @@ public class Client : MonoBehaviour
             {
                 if (_client.id != id)
                 {
-                    ServerSend.SpawnPlayer(id, _client.player);
+                    ServerSend.SpawnPlayer(id, _client.player, sceneID);
                 }
             }
         }
@@ -234,7 +237,7 @@ public class Client : MonoBehaviour
         {
             if (_client.player != null)
             {
-                ServerSend.SpawnPlayer(_client.id, player);
+                ServerSend.SpawnPlayer(_client.id, player, sceneID);
             }
         }
 

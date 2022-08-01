@@ -93,7 +93,7 @@ public class ServerSend
     #endregion
 
     #region Game packets
-    public static void SpawnPlayer(int toClient, Player player)
+    public static void SpawnPlayer(int toClient, Player player, int sceneID)
     {
         
         using (Packet packet = new Packet((int)ServerPackets.spawnPlayer))
@@ -102,6 +102,7 @@ public class ServerSend
             packet.Write(player.username);
             packet.Write(player.transform.position);
             packet.Write(player.transform.rotation);
+            packet.Write(sceneID);
 
             SendTCPData(toClient, packet);
         }
