@@ -79,7 +79,7 @@ public class Weapon : MonoBehaviour
        if (Physics.Raycast(shootOrigin.position, viewDirection, out RaycastHit _hit, 25f, LayerMask.GetMask("Hitbox")))
         {
 
-            if (_hit.collider.gameObject.GetComponent<Player>().id == owner.id)
+            if (_hit.collider.GetComponent<HitboxHandler>().playerScript.id == owner.id)
                 return;
 
             float damageMultiplier = _hit.collider.GetComponent<HitboxHandler>().damageMultiplier;
@@ -91,7 +91,7 @@ public class Weapon : MonoBehaviour
             
         }
 
-        Debug.DrawRay(shootOrigin.position, viewDirection, Color.green, 2f);
+        Debug.DrawRay(shootOrigin.position, viewDirection, Color.red, 2f);
 
     }
 
