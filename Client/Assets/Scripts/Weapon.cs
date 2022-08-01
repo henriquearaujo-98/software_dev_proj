@@ -150,7 +150,8 @@ public class Weapon : MonoBehaviour
         {
             if (hit.collider.tag == "Enemy")
             {
-                owner.showHitmarker();
+                if(owner.pc)
+                    owner.pc.showHitmarker();
             }
             else
             {
