@@ -10,6 +10,9 @@ public class footsteps : MonoBehaviour
     {
        if ((Input.GetKey(KeyCode.W)) || (Input.GetKey(KeyCode.D)) || (Input.GetKey(KeyCode.S)) || (Input.GetKey(KeyCode.A)))
        {
+           footstepsSound.volume = Random.Range(0.8f, 1);
+           footstepsSound.pitch = Random.Range(0.8f, 1.1f);
+
            footstepsSound.enabled = true;
        }
        else
