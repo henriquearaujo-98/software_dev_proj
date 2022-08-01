@@ -46,13 +46,14 @@ public class WallRunningAdvanced : MonoBehaviour
     private Player pm;
 
     private ImpactReceiver impact;
-    //private Rigidbody rb;
+    private Rigidbody rb;
 
     private void Start()
     {
         //rb = GetComponent<Rigidbody>();
         pm = GetComponent<Player>();
         impact = GetComponent<ImpactReceiver>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -71,6 +72,7 @@ public class WallRunningAdvanced : MonoBehaviour
     {
         wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallhit, wallCheckDistance, whatIsWall);
         wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallhit, wallCheckDistance, whatIsWall);
+
     }
 
     private bool AboveGround()
@@ -81,20 +83,20 @@ public class WallRunningAdvanced : MonoBehaviour
     private void StateMachine()
     {
         // Getting Inputs
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        horizontalInput = pm._inputDirection.x;
+        verticalInput = pm._inputDirection.y;
 
         upwardsRunning = Input.GetKey(upwardsRunKey);
         downwardsRunning = Input.GetKey(downwardsRunKey);
 
         // State 1 - Wallrunning
-        if((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !exitingWall)
+        if((wallLeft || wallRight) && verticalInput > 0 && !pm.grounded && !exitingWall)
         {
             if (!pm.wallrunning)
                 StartWallRun();
 
             // wallrun timer
-            if (wallRunTimer > 0)
+            if (wallRunTimer > 0) 
                 wallRunTimer -= Time.deltaTime;
 
             if(wallRunTimer <= 0 && pm.wallrunning)
@@ -104,7 +106,7 @@ public class WallRunningAdvanced : MonoBehaviour
             }
 
             // wall jump
-            if (Input.GetKeyDown(jumpKey)) WallJump();
+            if (pm.inputs[4]) WallJump();
         }
 
         // State 2 - Exiting
@@ -154,22 +156,22 @@ public class WallRunningAdvanced : MonoBehaviour
             wallForward = -wallForward;
 
         // forward force
-        rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
+        rb.AddForce(wallForward * wallRunForce * 10, ForceMode.Force);
 
         // upwards/downwards force
         if (upwardsRunning)
-            //GetComponent<CharacterController>().velocity = new Vector3(rb.velocity.x, wallClimbSpeed, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x, wallClimbSpeed, rb.velocity.z);
         if (downwardsRunning)
-            //rb.velocity = new Vector3(rb.velocity.x, -wallClimbSpeed, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x, -wallClimbSpeed, rb.velocity.z);
 
         // push to wall force
         if (!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0))
-            //rb.AddForce(-wallNormal * 100, ForceMode.Force);
-            impact.AddImpact(-wallNormal * 100,1000);
+            rb.AddForce(-wallNormal * 10, ForceMode.Force);
+            //impact.AddImpact(-wallNormal * 100,1000);
 
         // weaken gravity
         if (useGravity)
-            gameObject.GetComponent<CharacterController>().AddForce(transform.up * gravityCounterForce, ForceMode.Force);
+            rb.AddForce(transform.up * gravityCounterForce, ForceMode.Force);
         //impact.AddImpact(transform.up * gravityCounterForce,1000);
             
     }

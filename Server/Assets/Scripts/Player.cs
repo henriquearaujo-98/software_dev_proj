@@ -8,18 +8,24 @@ public class Player : MonoBehaviour
     public int id;
     public string username;
 
-    private CharacterController controller;
+    //private CharacterController controller;
     [SerializeField] Transform shootOrigin;
     [SerializeField] Transform orientation;
     
-    public float gravity = -9.81f;
+    //public float gravity = -9.81f;
     public float currentMoveSpeed = 5f;
-    public float sprintSpeed = 8.5f;
+    //public float sprintSpeed = 8.5f;
     public float originalMoveSpeed = 5f;
     public float jumpSpeed = 5f;
     private float yVelocity = 0;
     public float health;
     public float maxHealth = 100f;
+    
+    [Header("Movement")]
+    public float moveSpeed;
+    public float walkSpeed;
+    public float sprintSpeed;
+    public Vector2 _inputDirection;
     
     [Header("Crouching")]
     public float crouchSpeed;
@@ -27,22 +33,40 @@ public class Player : MonoBehaviour
     private float startYScale;
     public float crouchScale = 0.1f;
     private Vector3 originalScale;
+    public bool crouching;
+    
+    [Header("Jumping")]
+    public float jumpForce;
+    public float jumpCooldown;
+    public float airMultiplier;
+    public bool readyToJump;
     
     [Header("Sliding")]
     public float maxSlideTime;
     public float slideForce;
-    private float slideTimer;
+    public float slideTimer;
 
     public float slideYScale;
     public bool sliding;
-
     public bool[] inputs;
     
     [Header("Wall Running")]
     public float groundDrag;
     public float wallRunSpeed;
     
+    [Header("Slope Handling")]
+    public float maxSlopeAngle;
+    private RaycastHit slopeHit;
+    private bool exitingSlope;
+    
+    [Header("Ground Check")]
+    public float playerHeight;
+    public LayerMask whatIsGround;
+    public bool grounded;
+    
     public MovementState state;
+
+    private Rigidbody rb;
     public enum MovementState
     {
         walking,
@@ -56,17 +80,27 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        controller = this.GetComponent<CharacterController>();
+        //controller = this.GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
 
-        gravity *= Time.fixedDeltaTime * Time.fixedDeltaTime;
+        //gravity *= Time.fixedDeltaTime * Time.fixedDeltaTime;
+        walkSpeed *= Time.fixedDeltaTime;
         currentMoveSpeed *= Time.fixedDeltaTime;
-        originalMoveSpeed *= Time.fixedDeltaTime;
+        //originalMoveSpeed *= Time.fixedDeltaTime;
+        //moveSpeed *= Time.fixedDeltaTime;
         jumpSpeed *= Time.fixedDeltaTime;
-        sprintSpeed *= Time.fixedDeltaTime;
-        crouchSpeed *= Time.fixedDeltaTime;
-        maxSlideTime *= Time.fixedDeltaTime;
+        jumpForce *= Time.fixedDeltaTime;
+        //jumpCooldown *= Time.fixedDeltaTime;
+        airMultiplier *= Time.deltaTime;
+        //sprintSpeed *= Time.fixedDeltaTime;
+        //crouchSpeed *= Time.fixedDeltaTime;
+        //maxSlideTime *= Time.fixedDeltaTime;
 
         originalScale = transform.localScale;
+        readyToJump = true;
+        
+        startYScale = transform.localScale.y;
+
     }
 
     public void Initialize(int _id, string _username)
@@ -82,14 +116,25 @@ public class Player : MonoBehaviour
     {
         if (health < 1)
             return;
-    
+        
+        
+        
+        grounded = Physics.Raycast(transform.position, Vector3.down, 1.2f, whatIsGround);
+
         InputController();
         StateHandler();
+        SpeedControl();
+        
+        // handle drag
+        if (grounded)
+            rb.drag = groundDrag;
+        else
+            rb.drag = 0;
     }
 
     private void InputController()
     {
-        Vector2 _inputDirection = Vector2.zero;
+        _inputDirection = Vector2.zero;
         if (inputs[0])
         {
             _inputDirection.y += 1;
@@ -106,37 +151,47 @@ public class Player : MonoBehaviour
         {
             _inputDirection.x += 1;
         }
+        if (inputs[4] && readyToJump && grounded)
+        {
+            readyToJump = false;
+            Jump();
+            Invoke(nameof(ResetJump), jumpCooldown);
+        } 
         if (inputs[5] && !inputs[6])
         {
             Sprint(true);
+            state = MovementState.sprinting;
         }
         else
         {
             Sprint(false);
         }
-        if (inputs[6] && !inputs[5])
+        if (inputs[6])
         {
+            Debug.Log("I crouch");
             PlayerCrouch(true);
+            crouching = true;
             //State Change
             state = MovementState.crouching;
-            currentMoveSpeed = crouchSpeed;
+            //currentMoveSpeed = crouchSpeed;
         }
         else
         {
             PlayerCrouch(false);
+            crouching = false;
         }
         if (inputs[6] && inputs[5])
         {
-            StartSlide(true);
+            //StartSlide(true);
         }
         else
         {
-            StartSlide(false);
+            //StartSlide(false);
         }
             
         //PlayerCrouch(inputs[6]);
-
-        Move(_inputDirection);
+        
+        MovePlayer(_inputDirection);
         
         if (sliding)
             SlidingMovement(_inputDirection);
@@ -146,36 +201,71 @@ public class Player : MonoBehaviour
     {
         Vector3 _moveDirection = transform.right * _inputDirection.x + transform.forward * _inputDirection.y;
         _moveDirection *= currentMoveSpeed;
-
-        if (controller.isGrounded)
-        {
-            yVelocity = 0f;
-            if (inputs[4])
-            {
-                yVelocity = jumpSpeed;
-            }
-
-            if (wallrunning)
-            {
-                
-            }
-        }
-        yVelocity += gravity;
+        
         
         _moveDirection.y = yVelocity;
 
-        controller.Move(_moveDirection);
+        //controller.Move(_moveDirection);
 
         ServerSend.PlayerPosition(this);
         ServerSend.PlayerRotation(this);
         ServerSend.PlayerScale(this);
     }
+    
+    private void MovePlayer(Vector2 _inputDirection)
+    {
+        
+        // calculate movement direction
+        Vector3 _moveDirection = transform.right * _inputDirection.x + transform.forward * _inputDirection.y;
+        //moveDirection = orientation.forward * _inputDirection.x + orientation.right * _inputDirection.y;;
 
+        // on slope
+        if (OnSlope() && !exitingSlope)
+        {
+            rb.AddForce(GetSlopeMoveDirection(_moveDirection) * moveSpeed * 20f, ForceMode.Force);
+
+            if (rb.velocity.y > 0)
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+        }
+
+        // on ground
+        else if(grounded)
+            rb.AddForce(_moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
+        // in air
+        else if(!grounded)
+            rb.AddForce(_moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+
+        // turn gravity off while on slope
+        rb.useGravity = !OnSlope();
+        
+        ServerSend.PlayerPosition(this);
+        ServerSend.PlayerRotation(this);
+        ServerSend.PlayerScale(this);
+    }
+    
+    private void Jump()
+    {
+        exitingSlope = true;
+        
+        // reset y velocity
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(transform.up * jumpForce * 5, ForceMode.Impulse);
+    }
+    
+    private void ResetJump()
+    {
+        readyToJump = true;
+
+        exitingSlope = false;
+    }
     private void PlayerCrouch(bool _input)
     {
         if (_input)
         {
+            Debug.Log("Yee");
             transform.localScale = new Vector3(originalScale.x, crouchScale, originalScale.z);
+            //rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
         else
         {
@@ -191,29 +281,51 @@ public class Player : MonoBehaviour
         {
             sliding = true;
 
-            transform.localScale = new Vector3(transform.localScale.x, crouchScale, transform.localScale.z);
-            gameObject.GetComponent<CharacterController>().Move(Vector3.down * 5f);
+            transform.localScale = new Vector3(transform.localScale.x, slideYScale, transform.localScale.z);
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
 
             slideTimer = maxSlideTime;
         }
         else
         {
             sliding = false;
-            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            if (!crouching)
+            {
+                transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            }
         }
 
     }
     
     private void SlidingMovement(Vector2 _input)
     {
-        Vector3 inputDirection = orientation.forward * _input.x + orientation.right * _input.y;
+        //Vector3 inputDirection = orientation.forward * _input.x + orientation.right * _input.y;
 
         // sliding normal
-        if(gameObject.GetComponent<CharacterController>().velocity.y > -0.1f)
-        {
-            gameObject.GetComponent<CharacterController>().Move(inputDirection.normalized * slideForce);
+        //if(gameObject.GetComponent<CharacterController>().velocity.y > -0.1f)
+        //{
+        //    gameObject.GetComponent<CharacterController>().Move(inputDirection.normalized * slideForce);
+        //
+        //    slideTimer -= Time.fixedDeltaTime;
+        //}
 
-            slideTimer -= Time.fixedDeltaTime;
+        //if (slideTimer <= 0)
+        //    StopSlide();
+        //---------------------------
+        
+        Vector3 inputDirection = orientation.forward * _input.x + orientation.right * _input.y;
+        // sliding normal
+        if(!OnSlope() || rb.velocity.y > -0.1f)
+        {
+            rb.AddForce(inputDirection.normalized * slideForce, ForceMode.Force);
+
+            slideTimer -= Time.deltaTime;
+        }
+
+        // sliding down a slope
+        else
+        {
+            rb.AddForce(GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
         }
 
         if (slideTimer <= 0)
@@ -231,11 +343,49 @@ public class Player : MonoBehaviour
     {
         if (sprint)
         {
-            currentMoveSpeed = sprintSpeed; //TODO Switch with a variable and add it to the state system
+            //currentMoveSpeed = sprintSpeed; //TODO Switch with a variable and add it to the state system
+            moveSpeed = sprintSpeed;
         }
         else
         {
-            currentMoveSpeed = originalMoveSpeed;
+            //currentMoveSpeed = originalMoveSpeed;
+            moveSpeed = originalMoveSpeed;
+        }
+    }
+    public bool OnSlope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, 1.2f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+
+        return false;
+    }
+    public Vector3 GetSlopeMoveDirection(Vector3 direction)
+    {
+        return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
+    }
+    private void SpeedControl()
+    {
+        // limiting speed on slope
+        if (OnSlope() && !exitingSlope)
+        {
+            if (rb.velocity.magnitude > moveSpeed)
+                rb.velocity = rb.velocity.normalized * moveSpeed;
+        }
+
+        // limiting speed on ground or in air
+        else
+        {
+            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            // limit velocity if needed
+            if (flatVel.magnitude > moveSpeed)
+            {
+                Vector3 limitedVel = flatVel.normalized * moveSpeed;
+                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            }
         }
     }
     
@@ -251,18 +401,18 @@ public class Player : MonoBehaviour
         if (inputs[6] && !inputs[5])
         {
             state = MovementState.crouching;
-            currentMoveSpeed = crouchSpeed;
+            //currentMoveSpeed = crouchSpeed;
         }
 
         // Mode - Sprinting
-        else if(controller.isGrounded && inputs[5] && !inputs[6])
+        else if(grounded && inputs[5] && !inputs[6])
         {
             state = MovementState.sprinting;
-            currentMoveSpeed = sprintSpeed;
+            //currentMoveSpeed = sprintSpeed;
         }
 
         // Mode - Walking
-        else if (controller.isGrounded)
+        else if (grounded)
         {
             state = MovementState.walking;
             currentMoveSpeed = originalMoveSpeed;
@@ -304,8 +454,10 @@ public class Player : MonoBehaviour
         health -= _damage;
         if (health <= 0f)
         {
+            //TODO
+            
             health = 0f;
-            controller.enabled = false;
+            //controller.enabled = false;
             transform.position = new Vector3(0f, 25f, 0f); //Respawn position
             ServerSend.PlayerPosition(this);
             StartCoroutine(Respawn());
@@ -316,10 +468,12 @@ public class Player : MonoBehaviour
 
     private IEnumerator Respawn()
     {
+        //TODO
+        
         yield return new WaitForSeconds(5f);
 
         health = maxHealth;
-        controller.enabled = true;
+        //controller.enabled = true;
         ServerSend.PlayerRespawned(this);
     }
 

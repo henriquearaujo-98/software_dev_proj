@@ -54,20 +54,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Movement\WallRunningAdvanced.cs" />
-     <Compile Include="Assets\Scripts\Movement\PlayerCam.cs" />
-     <Compile Include="Assets\Scripts\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\Movement\Sliding.cs" />
-     <Compile Include="Assets\Scripts\Server.cs" />
-     <Compile Include="Assets\Scripts\Movement\WallRunning.cs" />
-     <Compile Include="Assets\Scripts\Movement\PlayerMovementAdvanced.cs" />
-     <Compile Include="Assets\Scripts\Movement\MoveCamera.cs" />
-     <Compile Include="Assets\Scripts\Packet.cs" />
-     <Compile Include="Assets\Scripts\Client.cs" />
-     <Compile Include="Assets\Scripts\ServerHandle.cs" />
      <Compile Include="Assets\Scripts\ThreadManager.cs" />
-     <Compile Include="Assets\Scripts\Movement\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\ServerSend.cs" />
-     <Compile Include="Assets\Scripts\Movement\ImpactReceiver.cs" />
  <Reference Include="UnityEngine">
  <HintPath>/Applications/Unity/Hub/Editor/2020.3.17f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -289,9 +277,6 @@
  </Reference>
  <Reference Include="UnityEditor.UnityConnectModule">
  <HintPath>/Applications/Unity/Hub/Editor/2020.3.17f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
- </Reference>
- <Reference Include="DOTween">
- <HintPath>/Users/ykcalikoglu/Desktop/UnityProjects/software_dev_proj/Server/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
  <HintPath>/Users/ykcalikoglu/Desktop/UnityProjects/software_dev_proj/Server/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
@@ -673,10 +658,6 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{72f20253-faf0-936b-2dc7-6fdc1491fc6e}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
