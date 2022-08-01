@@ -36,7 +36,7 @@ public class ClientHandle : MonoBehaviour
         Destroy(GameManager.players[_id].gameObject);
         GameManager.players.Remove(_id);
 
-        GameManager.players[Client.instance.myId].killFeedHandler.InstantiateKillFeedItem(msg);
+        GameManager.players[Client.instance.myId].pc.killFeedHandler.InstantiateKillFeedItem(msg);
     }
     #endregion
 
@@ -52,7 +52,7 @@ public class ClientHandle : MonoBehaviour
         GameManager.instance.SpawnPlayer(id, username, position, rotation);
 
         if(GameManager.players.ContainsKey(Client.instance.myId))
-            GameManager.players[Client.instance.myId].killFeedHandler.InstantiateKillFeedItem(msg);
+            GameManager.players[Client.instance.myId].pc.killFeedHandler.InstantiateKillFeedItem(msg);
     }
 
     public static void PlayerPosition(Packet _packet)
@@ -109,7 +109,7 @@ public class ClientHandle : MonoBehaviour
 
         string _killfeedtext = $"{GameManager.players[_fromPlayer].username} [{GameManager.instance.weapons[_weapon].name}] {GameManager.players[_victimPlayer].username}";
 
-        GameManager.players[Client.instance.myId].killFeedHandler.InstantiateKillFeedItem(_killfeedtext);
+        GameManager.players[Client.instance.myId].pc.killFeedHandler.InstantiateKillFeedItem(_killfeedtext);
 
 
         Debug.Log($"{GameManager.players[_fromPlayer].username} [{GameManager.instance.weapons[_weapon].name}] {GameManager.players[_victimPlayer].username}");

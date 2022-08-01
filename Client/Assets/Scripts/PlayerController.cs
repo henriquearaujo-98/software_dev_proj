@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject DamageFrom;
     Transform DamageFromTransform;
     [SerializeField] private Image foregroundImage;
+    public KillFeedHandler killFeedHandler;
+    public Animator canvasAnim;
 
     private void Update()
     {
@@ -74,13 +76,13 @@ public class PlayerController : MonoBehaviour
 
     public void KillNotification()
     {
-        GetComponent<PlayerManager>().canvasAnim.Play("KillNofication", 1, 0f);
+        canvasAnim.Play("KillNofication", 1, 0f);
     }
 
     public void FootStepsHandler()
     {
 
-        
+
 
     }
 
@@ -88,5 +90,11 @@ public class PlayerController : MonoBehaviour
     {
         float healthPer = GetComponent<PlayerManager>().health / GetComponent<PlayerManager>().maxHealth;
         foregroundImage.fillAmount = healthPer;
+    }
+
+    public void showHitmarker()
+    {
+        canvasAnim.Play("Hitmarker", 0, 0f);
+
     }
 }
