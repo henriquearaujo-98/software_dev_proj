@@ -14,20 +14,10 @@ public class PlayerManager : MonoBehaviour
 
     public int kills;
     public int deaths;
-    public Animator canvasAnim;
 
-    [SerializeField] PlayerController pc;
+    public PlayerController pc;
     
-
-    [SerializeField] DamageIndicator DamageIndicator;
-    [SerializeField] GameObject DamageFrom;
-    Transform DamageFromTransform;
-    public KillFeedHandler killFeedHandler;
-
-
-
-
-
+    
 
     public void Initialize(int _id, string _username)
     {
@@ -61,8 +51,5 @@ public class PlayerManager : MonoBehaviour
         SetHealth(maxHealth);
     }
 
-    public void showHitmarker()
-    {
-        canvasAnim.Play("Hitmarker", 0, 0f);
-    }
+
 }
