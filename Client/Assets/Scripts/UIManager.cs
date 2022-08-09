@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     public void ConnectToServer()
     {
         startMenu.SetActive(false);
+        LevelManager.instance.SetServerConnectionProgress(0);
         usernameField.interactable = false;
         Client.instance.ConnectToServer();
     }

@@ -22,6 +22,8 @@ public class Client : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
         if (instance == null)
         {
             instance = this;
@@ -69,6 +71,8 @@ public class Client : MonoBehaviour
 
             receiveBuffer = new byte[dataBufferSize];
             socket.BeginConnect(instance.ip, instance.port, ConnectCallback, socket);
+
+            LevelManager.instance.SetServerConnectionProgress(25);
         }
 
         private void ConnectCallback(IAsyncResult result)
@@ -202,6 +206,8 @@ public class Client : MonoBehaviour
             {
                 SendData(_packet);
             }
+
+            LevelManager.instance.SetServerConnectionProgress(50);
         }
 
         public void SendData(Packet _packet)
@@ -287,6 +293,7 @@ public class Client : MonoBehaviour
             
         };
         Debug.Log("Initialized packets.");
+        LevelManager.instance.SetServerConnectionProgress(10);
     }
 
     private void Disconnect()
