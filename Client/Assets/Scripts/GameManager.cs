@@ -13,10 +13,14 @@ public class GameManager : MonoBehaviour
 
     public List<Weapon> weapons; // Make sure weapon's ID correspond to their index on this list. Also that client and server are synch
 
-    public PlayerController myPlayer;
+    [HideInInspector] public PlayerController myPlayer;
+
+    [SerializeField] private LevelManager levelManager;
 
     private void Awake()
     {
+
+        DontDestroyOnLoad(gameObject);
         if (instance == null)
         {
             instance = this;
@@ -28,13 +32,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>Spawns a player.</summary>
+    /// <summary>Loads scene, then spawns a player.</summary>
     /// <param name="_id">The player's ID.</param>
     /// <param name="_name">The player's name.</param>
     /// <param name="_position">The player's starting position.</param>
     /// <param name="_rotation">The player's starting rotation.</param>
-    public void SpawnPlayer(int _id, string _username, Vector3 _position, Quaternion _rotation)
+    /// <param name="_sceneID">SceneID of the server</param>
+    public async void SpawnPlayer(int _id, string _username, Vector3 _position, Quaternion _rotation, int _sceneID)
     {
+        //Load scene
+        await levelManager.LoadSceneAsync(_sceneID);
+
+        //TODO: Pre game screen
+
+        //Spawn Player
         GameObject _player;
         if (_id == Client.instance.myId)
         {
@@ -52,7 +63,5 @@ public class GameManager : MonoBehaviour
         {
             myPlayer = _player.GetComponent<PlayerController>();
         }
-
-        
     }
 }
