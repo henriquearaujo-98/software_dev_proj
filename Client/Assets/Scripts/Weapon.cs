@@ -46,6 +46,9 @@ public class Weapon : MonoBehaviour
     public float aimZoom = 45;
     public GameObject crosshair;
 
+    public Transform gunBarrell;
+    public TrailRenderer bulletTrail;
+
     private void Awake() {
         shootOrigin = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
         playerCam = shootOrigin.gameObject.GetComponent<Camera>();
@@ -90,11 +93,7 @@ public class Weapon : MonoBehaviour
         {
            StartCoroutine(Reload());
             return;
-        }
-
-        
-
-        
+        }      
     }
 
     private void Update()
@@ -103,8 +102,7 @@ public class Weapon : MonoBehaviour
         {
             anim.Play("Reload w bullets");
             return;
-        }
-            
+        }           
 
         if (isWalking)
             anim.SetBool("Walk", true);
@@ -143,8 +141,13 @@ public class Weapon : MonoBehaviour
         MuzzleFlash.Play();
 
         currAmmo--;
-        
 
+        var bullet = Instantiate(bulletTrail, gunBarrell.position, Quaternion.identity);
+        bullet.AddPosition(gunBarrell.position);
+        {
+            bullet.transform.position = transform.position + (shootOrigin.transform.forward * 200);
+        }
+        
         RaycastHit hit; 
         if (Physics.Raycast(shootOrigin.position, shootOrigin.forward, out hit, 250f))
         {
