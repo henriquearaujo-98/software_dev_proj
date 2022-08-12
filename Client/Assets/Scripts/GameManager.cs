@@ -40,8 +40,7 @@ public class GameManager : MonoBehaviour
     /// <param name="_sceneID">SceneID of the server</param>
     public async void SpawnPlayer(int _id, string _username, Vector3 _position, Quaternion _rotation, int _sceneID)
     {
-        //Load scene
-        await levelManager.LoadSceneAsync(_sceneID);
+        
 
         //TODO: Pre game screen
 
@@ -49,6 +48,9 @@ public class GameManager : MonoBehaviour
         GameObject _player;
         if (_id == Client.instance.myId)
         {
+            // If the server is initializing our player, we load the scene aswell
+            await levelManager.LoadSceneAsync(_sceneID);
+
             _player = Instantiate(localPlayerPrefab, _position, _rotation);
         }
         else
