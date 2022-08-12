@@ -1670,6 +1670,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7830292065126974514}
     m_Modifications:
+    - target: {fileID: 5529337160424821945, guid: b6786ed6bf6df91478187f12011f0022, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529337160424821947, guid: b6786ed6bf6df91478187f12011f0022, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529337160424821949, guid: b6786ed6bf6df91478187f12011f0022, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529337160424821951, guid: b6786ed6bf6df91478187f12011f0022, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529337160438812123, guid: b6786ed6bf6df91478187f12011f0022, type: 3}
+      propertyPath: m_Name
+      value: Gun Barrel
+      objectReference: {fileID: 0}
     - target: {fileID: 5791338026372658683, guid: b6786ed6bf6df91478187f12011f0022, type: 3}
       propertyPath: owner
       value: 
@@ -1682,6 +1702,10 @@ PrefabInstance:
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 2119320301621904859}
+    - target: {fileID: 5791338026372658683, guid: b6786ed6bf6df91478187f12011f0022, type: 3}
+      propertyPath: gunBarrell
+      value: 
+      objectReference: {fileID: 6746171776928368042}
     - target: {fileID: 5791338026372658683, guid: b6786ed6bf6df91478187f12011f0022, type: 3}
       propertyPath: audioSource
       value: 
@@ -1744,6 +1768,11 @@ GameObject:
 --- !u!4 &4940975159306593856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6175225764967772689, guid: b6786ed6bf6df91478187f12011f0022, type: 3}
+  m_PrefabInstance: {fileID: 1234850132034442321}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6746171776928368042 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5529337160438977019, guid: b6786ed6bf6df91478187f12011f0022, type: 3}
   m_PrefabInstance: {fileID: 1234850132034442321}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3031233705964454695
@@ -1957,6 +1986,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7830292065126974514}
     m_Modifications:
+    - target: {fileID: 3214853668852671143, guid: fac3c75f377e11e4791fa41bcb512214, type: 3}
+      propertyPath: m_Name
+      value: Gun barrel
+      objectReference: {fileID: 0}
     - target: {fileID: 4538088507967026884, guid: fac3c75f377e11e4791fa41bcb512214, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2030,9 +2063,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2119320301621904859}
     - target: {fileID: 8493812638902134470, guid: fac3c75f377e11e4791fa41bcb512214, type: 3}
+      propertyPath: gunBarrell
+      value: 
+      objectReference: {fileID: 5609121208878277672}
+    - target: {fileID: 8493812638902134470, guid: fac3c75f377e11e4791fa41bcb512214, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 2345987821119817149}
+    - target: {fileID: 8493812638902134470, guid: fac3c75f377e11e4791fa41bcb512214, type: 3}
+      propertyPath: bulletTrail
+      value: 
+      objectReference: {fileID: 6670010285891972953, guid: 0e4afad5f27c1492a8b062c78b516cb2, type: 3}
     - target: {fileID: 8493812638902134470, guid: fac3c75f377e11e4791fa41bcb512214, type: 3}
       propertyPath: aimPosition.x
       value: -0.22
@@ -2050,6 +2091,11 @@ PrefabInstance:
 --- !u!1 &648718600843129139 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7514915981595601820, guid: fac3c75f377e11e4791fa41bcb512214, type: 3}
+  m_PrefabInstance: {fileID: 7010677890158697135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5609121208878277672 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3214853668852776583, guid: fac3c75f377e11e4791fa41bcb512214, type: 3}
   m_PrefabInstance: {fileID: 7010677890158697135}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6895126554883402859 stripped
