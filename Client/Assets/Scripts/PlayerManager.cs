@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
         id = _id;
         username = _username;
         health = maxHealth;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void SetHealth(float _health)
