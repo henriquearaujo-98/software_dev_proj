@@ -1,0 +1,10 @@
+site_name: Software Development Project Documentation
+nav:
+    - Home: index.md
+    - UserGuide: userguide.md
+    - Section:
+      - server/index.md
+      - Page 1: server/overview.md
+
+
+theme: readthedocs
