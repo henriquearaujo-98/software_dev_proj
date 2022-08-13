@@ -241,7 +241,6 @@ public class Client : MonoBehaviour
             }
         }
 
-        player.sendUpdates = true;
     }
 
     /// <summary>Disconnects the client and stops all network traffic.</summary>

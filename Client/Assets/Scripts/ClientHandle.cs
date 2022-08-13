@@ -69,7 +69,6 @@ public class ClientHandle : MonoBehaviour
     {
         int _id = _packet.ReadInt();
         Quaternion _rotation = _packet.ReadQuaternion();
-        Debug.Log(_id + "-" +_rotation);
 
         if (GameManager.players.ContainsKey(_id))
             GameManager.players[_id].transform.rotation = _rotation;

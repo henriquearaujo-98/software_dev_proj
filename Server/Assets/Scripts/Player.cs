@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     public int deaths;
     public int kills;
 
-    public bool sendUpdates = false;
 
     [SerializeField] Animator anim;
 
@@ -70,12 +69,11 @@ public class Player : MonoBehaviour
         
         InputController();
 
-        if (sendUpdates)
-        {
-            ServerSend.PlayerPosition(this);
-            ServerSend.PlayerRotation(this);
-            ServerSend.PlayerInputs(this, inputs);
-        }
+
+        ServerSend.PlayerPosition(this);
+        ServerSend.PlayerRotation(this);
+        ServerSend.PlayerInputs(this, inputs);
+        
         
     }
 
