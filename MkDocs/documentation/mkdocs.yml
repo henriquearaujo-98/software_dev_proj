@@ -1,10 +1,32 @@
+# mkdocs run
 site_name: Software Development Project Documentation
 nav:
-    - Home: index.md
-    - UserGuide: userguide.md
-    - Section:
-      - server/index.md
-      - Page 1: server/overview.md
+  - 'index.md'
+  - 'userguide.md'
+  - 'Netcode Overview':
+    - netcode/start.md
+    - netcode/network_overview.md
+    - netcode/TCP_connection.md
+    - netcode/Packets.md
+    - netcode/TCP_Transport_Layer.md
+    - netcode/UDP_Transport_Layer.md
+    - netcode/connection_packets.md
+  - 'Networking':
+    - 'networking/start.md'
+    - 'networking/sending_a_packet.md'
+  - 'Game Logic':
+    - 'gamelogic/spawning_a_player.md'
+    - 'gamelogic/player_movement_(rotation_and_position).md'
+    - 'gamelogic/player_shooting,_health_and_respawn.md'
+  - 'Server':
+    - 'server/index.md'
+    - 'server/overview.md'
+  
 
 
-theme: readthedocs
+
+theme:
+    name: readthedocs
+    include_homepage_in_sidebar: false
+    highlightjs: true
+

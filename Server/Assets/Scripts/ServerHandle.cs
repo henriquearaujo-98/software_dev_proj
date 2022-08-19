@@ -14,6 +14,7 @@ public class ServerHandle : MonoBehaviour
         if (clientId != clientIdCheck)
         {
             Debug.Log($"Player \"{username}\" (ID: {clientId}) has assumed the wrong client ID ({clientIdCheck})!");
+            return;
         }
         Server.clients[clientId].SendIntoGame(username);
     }

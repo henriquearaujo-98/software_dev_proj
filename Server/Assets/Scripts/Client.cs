@@ -217,6 +217,7 @@ public class Client : MonoBehaviour
     {
 
         int sceneID = SceneManager.GetActiveScene().buildIndex;
+
         player = NetworkManager.instance.InstantiatePlayer();
         player.Initialize(id, _playerName);
 
