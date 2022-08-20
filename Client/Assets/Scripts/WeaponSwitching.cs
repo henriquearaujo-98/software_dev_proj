@@ -7,6 +7,10 @@ public class WeaponSwitching : MonoBehaviour {
 
     [Header("References")]
     public Transform[] weapons;
+    public Transform currentWeapon;
+    public int primaryWeaponID = 0;
+    public int secondaryWeaponID = 1;
+
 
     [Header("Keys")]
     [SerializeField] private KeyCode[] keys;
@@ -14,7 +18,7 @@ public class WeaponSwitching : MonoBehaviour {
     [Header("Settings")]
     [SerializeField] private float switchTime;
 
-    public int selectedWeapon;
+    public int selectedWeapon; // 0 - primary; 1 - secondary
     private float timeSinceLastSwitch;
 
     private void Start() {
@@ -46,13 +50,31 @@ public class WeaponSwitching : MonoBehaviour {
         timeSinceLastSwitch += Time.deltaTime;
     }
 
-    private void Select(int weaponIndex) {
-        for (int i = 0; i < weapons.Length; i++)
-            weapons[i].gameObject.SetActive(i == weaponIndex);
+    private void Select(int selectedWeapon) {
+
+        foreach (Transform item in weapons) { item.gameObject.SetActive(false); }
+
+        switch (selectedWeapon)
+        {
+            case 0:
+                currentWeapon = weapons[primaryWeaponID];
+                
+                weapons[primaryWeaponID].gameObject.SetActive(true);
+                weapons[secondaryWeaponID].gameObject.SetActive(false);
+                OnWeaponSelected(primaryWeaponID);
+                break;
+
+            case 1:
+                currentWeapon = weapons[secondaryWeaponID];
+
+                weapons[primaryWeaponID].gameObject.SetActive(false);
+                weapons[secondaryWeaponID].gameObject.SetActive(true);
+                OnWeaponSelected(secondaryWeaponID);
+                break;
+
+        }
 
         timeSinceLastSwitch = 0f;
-
-        OnWeaponSelected(weaponIndex);
     }
 
     private void OnWeaponSelected(int weaponIndex) { 

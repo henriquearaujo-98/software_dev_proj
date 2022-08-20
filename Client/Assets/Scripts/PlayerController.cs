@@ -34,11 +34,11 @@ public class PlayerController : MonoBehaviour
         SendInputToServer();
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
-            weaponHolder.weapons[weaponHolder.selectedWeapon].gameObject.GetComponent<Weapon>().isWalking = true;
+            weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isWalking = true;
         }
         else
         {
-            weaponHolder.weapons[weaponHolder.selectedWeapon].gameObject.GetComponent<Weapon>().isWalking = false;
+            weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isWalking = false;
         }
     }
 
