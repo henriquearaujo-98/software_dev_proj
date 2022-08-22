@@ -1024,14 +1024,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4789820717353320860}
-  m_LocalRotation: {x: 0.022773745, y: 0.008724295, z: -0.00019874396, w: 0.99970263}
-  m_LocalPosition: {x: 0.2, y: -0.034, z: 0.295}
+  m_LocalRotation: {x: -0.0028479423, y: 0.008680973, z: -0.016381005, w: 0.9998241}
+  m_LocalPosition: {x: -0.088, y: 0.017, z: 0.068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6024085061452741004}
   m_Father: {fileID: 7830292065126974514}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 2.61, y: 1, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.31, y: 1, z: -1.88}
 --- !u!114 &8405000195495655552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   MuzzleFlash: {fileID: 568307815084011342}
   owner: {fileID: 6058089311658039909}
   anim: {fileID: 499410168232493658}
-  aimPosition: {x: -0.33, y: 0.06, z: 0.3169998}
+  aimPosition: {x: -0.375, y: 0.24, z: 0.33}
   ADSSpeed: 8
   aimZoom: 45
   crosshair: {fileID: 2119320301621904859}
