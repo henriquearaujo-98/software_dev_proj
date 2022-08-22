@@ -556,6 +556,8 @@ MonoBehaviour:
   weapons:
   - {fileID: 1960364806938411695, guid: 16040f5e8b421784e977b699f5788a6f, type: 3}
   - {fileID: 1754870581968103676, guid: 9457de33562d2b74fa0ba4f34fa32678, type: 3}
+  - {fileID: 8357750564098682045, guid: c042cf9eda739494ca648c79ffcc8da8, type: 3}
+  - {fileID: 3929147015638429331, guid: f3cae68e97ca5884fafd08322e53556e, type: 3}
 --- !u!4 &1858539749
 Transform:
   m_ObjectHideFlags: 0
