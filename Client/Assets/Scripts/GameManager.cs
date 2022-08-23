@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private LevelManager levelManager;
 
+    public int primaryWeaponID;
+    public int secondaryWeaponID;
+
     private void Awake()
     {
 
@@ -64,6 +67,8 @@ public class GameManager : MonoBehaviour
         if (_player.GetComponent<PlayerController>())
         {
             myPlayer = _player.GetComponent<PlayerController>();
+            myPlayer.weaponHolder.primaryWeaponID = primaryWeaponID;
+            myPlayer.weaponHolder.secondaryWeaponID = secondaryWeaponID;
         }
     }
 }

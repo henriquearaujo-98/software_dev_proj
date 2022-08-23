@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     AudioSource audioSource;
 
     [SerializeField] Transform camTransform;
-    [SerializeField] WeaponSwitching weaponHolder;
+    public WeaponSwitching weaponHolder;
     [SerializeField] DamageIndicator DamageIndicator;
     [SerializeField] GameObject DamageFrom;
     Transform DamageFromTransform;

@@ -23,9 +23,6 @@ public class WeaponSwitching : MonoBehaviour {
 
     private void Start() {
 
-        primaryWeaponID = 0;
-        secondaryWeaponID = 1;
-
         SetWeapons();
         Select(selectedWeapon);
 
