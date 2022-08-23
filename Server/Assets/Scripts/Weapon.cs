@@ -28,6 +28,7 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] Player owner;
 
+    public bool canShoot;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,9 @@ public class Weapon : MonoBehaviour
     private void Update()
     {
         if (isReloading)
+            return;
+
+        if (canShoot == false)
             return;
 
         if (currAmmo <= 0 && TotalAmmo > 0)

@@ -17,6 +17,7 @@ public class Weapon : MonoBehaviour
     public float reloadTime = 1f;
     public bool isReloading = false ;
     public bool isWalking = true;
+    public bool isRunning = false;
 
     public float nextFire;
 
@@ -48,6 +49,8 @@ public class Weapon : MonoBehaviour
 
     public Transform gunBarrell;
     public TrailRenderer bulletTrail;
+
+    
 
     private void Awake() {
         shootOrigin = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
@@ -89,6 +92,8 @@ public class Weapon : MonoBehaviour
         if (isReloading)
             return;
 
+        
+
         if( currAmmo<=0 && TotalAmmo>0 )
         {
            StartCoroutine(Reload());
@@ -98,16 +103,26 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if (isReloading)
+        if (isReloading )
         {
-            anim.Play("Reload w bullets");
+            if( currAmmo > 0 )
+                anim.Play("Reload w bullets");
+            else
+                anim.Play("Reload No Bullets");
+
             return;
-        }           
+        }
+
 
         if (isWalking)
             anim.SetBool("Walk", true);
         else
             anim.SetBool("Walk", false);
+
+        if(isRunning)
+            anim.SetBool("Run", true);
+        else
+            anim.SetBool("Run", false);
 
         if (fireRate == 0 && Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -134,6 +149,9 @@ public class Weapon : MonoBehaviour
     }
 
     void Shoot(){
+
+        if (isRunning)
+            return;
 
         if (TotalAmmo<=0 && currAmmo<=0)
             return; ///add clicking sound 

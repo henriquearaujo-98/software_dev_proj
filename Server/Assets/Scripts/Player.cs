@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 
     public float gravity = -9.81f;
     public float moveSpeed = 5f;
+    public float walkSpeed = 5f;
+    public float sprintSpeed = 8f;
     public float jumpSpeed = 5f;
     private float yVelocity = 0;
     public float health;
@@ -35,7 +37,8 @@ public class Player : MonoBehaviour
         
 
         gravity *= Time.fixedDeltaTime * Time.fixedDeltaTime;
-        moveSpeed *= Time.fixedDeltaTime;
+        walkSpeed *= Time.fixedDeltaTime;
+        sprintSpeed *= Time.fixedDeltaTime;
         jumpSpeed *= Time.fixedDeltaTime;
     }
 
@@ -121,6 +124,8 @@ public class Player : MonoBehaviour
             _inputDirection.x += 1;
         }
 
+        SprintToggle(inputs[5]);
+
         Move(_inputDirection);
     }
 
@@ -143,6 +148,21 @@ public class Player : MonoBehaviour
         controller.Move(_moveDirection);
 
         
+    }
+
+    void SprintToggle(bool _keydown)
+    {
+        if (_keydown)
+        {
+            moveSpeed = sprintSpeed;
+            
+        }
+        else
+        {
+            moveSpeed = walkSpeed;
+        }
+
+        weaponSwitching.currentWeapon.gameObject.GetComponent<Weapon>().canShoot = !_keydown;
     }
 
 

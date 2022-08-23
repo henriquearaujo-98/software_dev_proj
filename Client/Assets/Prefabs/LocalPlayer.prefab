@@ -1983,6 +1983,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tec9 Holder
       objectReference: {fileID: 0}
+    - target: {fileID: 9179971363816179858, guid: 4b85e251fe60fc74f95148ba6e637ec3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b85e251fe60fc74f95148ba6e637ec3, type: 3}
 --- !u!4 &8162976053602713450 stripped
@@ -2165,7 +2169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7514915981595601820, guid: fac3c75f377e11e4791fa41bcb512214, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8493812638902134470, guid: fac3c75f377e11e4791fa41bcb512214, type: 3}
       propertyPath: owner
@@ -2328,6 +2332,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 162363774729873809, guid: af83adf380e5fc64282694ba829fb3fe, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2047429866549711887, guid: af83adf380e5fc64282694ba829fb3fe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2047429866549711887, guid: af83adf380e5fc64282694ba829fb3fe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2047429866549711887, guid: af83adf380e5fc64282694ba829fb3fe, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3562557406587049831, guid: af83adf380e5fc64282694ba829fb3fe, type: 3}

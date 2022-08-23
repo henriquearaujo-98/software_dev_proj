@@ -35,10 +35,17 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isWalking = true;
+
+            if(Input.GetKey(KeyCode.LeftShift))
+                weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isRunning = true;
+            else
+                weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isRunning = false;
+
         }
         else
         {
             weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isWalking = false;
+            weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isRunning = false;
         }
     }
 
