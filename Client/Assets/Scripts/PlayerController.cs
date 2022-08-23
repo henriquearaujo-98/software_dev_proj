@@ -18,6 +18,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image foregroundImage;
     public KillFeedHandler killFeedHandler;
     public Animator canvasAnim;
+    [SerializeField] Camera cam;
+    [SerializeField] float crouchHeight;
+    [SerializeField] float normalHeight;
+    [SerializeField] float crouchSpeed;
+
+
 
     private void Update()
     {
@@ -32,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         SendInputToServer();
+
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isWalking = true;
@@ -46,6 +53,15 @@ public class PlayerController : MonoBehaviour
         {
             weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isWalking = false;
             weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isRunning = false;
+        }
+
+        if (Input.GetKey(KeyCode.C))
+        {
+            cam.transform.position = Vector3.Lerp(cam.transform.position, new Vector3( cam.transform.position.x, crouchHeight, cam.transform.position.z), crouchSpeed);
+        }
+        else
+        {
+            cam.transform.position = Vector3.Lerp(cam.transform.position, new Vector3(cam.transform.position.x, normalHeight, cam.transform.position.z), crouchSpeed);
         }
     }
 

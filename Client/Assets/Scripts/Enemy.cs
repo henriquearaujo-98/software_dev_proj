@@ -80,7 +80,14 @@ public class Enemy : MonoBehaviour
         if (serverInputs[7])
             anim.Play("Shoot", 0, 0f);
 
-
+        if (serverInputs[6])
+        {
+            anim.SetBool("Crouch", true);
+        }
+        else
+        {
+            anim.SetBool("Crouch", false);
+        }
        // anim.SetBool("Grounded", GetComponent<CharacterController>().isGrounded);
 
     }

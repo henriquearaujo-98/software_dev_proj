@@ -11,13 +11,15 @@ public class Player : MonoBehaviour
     [SerializeField] Transform shootOrigin;
 
     public float gravity = -9.81f;
-    public float moveSpeed = 5f;
+    float moveSpeed = 5f;
     public float walkSpeed = 5f;
-    public float sprintSpeed = 8f;
+    public float sprintSpeed = 10f;
+    public float crouchSpeed = 3f;
     public float jumpSpeed = 5f;
     private float yVelocity = 0;
     public float health;
     public float maxHealth = 100f;
+    bool isCrouching = false;
 
 
     public bool[] inputs;
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
         gravity *= Time.fixedDeltaTime * Time.fixedDeltaTime;
         walkSpeed *= Time.fixedDeltaTime;
         sprintSpeed *= Time.fixedDeltaTime;
+        crouchSpeed *= Time.fixedDeltaTime;
         jumpSpeed *= Time.fixedDeltaTime;
     }
 
@@ -124,6 +127,8 @@ public class Player : MonoBehaviour
             _inputDirection.x += 1;
         }
 
+        CrouchToggle(inputs[6]);
+
         SprintToggle(inputs[5]);
 
         Move(_inputDirection);
@@ -152,6 +157,9 @@ public class Player : MonoBehaviour
 
     void SprintToggle(bool _keydown)
     {
+        if (isCrouching)
+            return;
+
         if (_keydown)
         {
             moveSpeed = sprintSpeed;
@@ -165,6 +173,20 @@ public class Player : MonoBehaviour
         weaponSwitching.currentWeapon.gameObject.GetComponent<Weapon>().canShoot = !_keydown;
     }
 
+    void CrouchToggle(bool _keydown)
+    {
+        isCrouching = _keydown;
+        if (_keydown)
+        {
+            anim.SetBool("Crouch", true);
+            moveSpeed = crouchSpeed;
+        }
+        else
+        {
+            anim.SetBool("Crouch", false);
+            moveSpeed = walkSpeed;
+        }
+    }
 
     public void SetInput(bool[] _inputs, Quaternion _rotation)
     {

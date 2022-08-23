@@ -105,7 +105,9 @@ MonoBehaviour:
   username: 
   shootOrigin: {fileID: 580138823092503267}
   gravity: -9.81
-  moveSpeed: 5
+  walkSpeed: 5
+  sprintSpeed: 10
+  crouchSpeed: 3
   jumpSpeed: 5
   health: 0
   maxHealth: 100

@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 4339588690890250106}
   - component: {fileID: 7678956141078081310}
   - component: {fileID: 2057015395552957302}
-  - component: {fileID: 7965844598537217061}
+  - component: {fileID: 3583723041903542539}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -364,7 +364,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7965844598537217061
+--- !u!136 &3583723041903542539
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -926,7 +926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4542457824912081639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7830292065126974514}
@@ -1418,6 +1418,10 @@ MonoBehaviour:
   foregroundImage: {fileID: 1296684838541080914}
   killFeedHandler: {fileID: 4924954642233174870}
   canvasAnim: {fileID: 1049704125707708746}
+  cam: {fileID: 8194091413457171794}
+  crouchHeight: 1
+  normalHeight: 2
+  crouchSpeed: 0.125
 --- !u!82 &1739544998548816662
 AudioSource:
   m_ObjectHideFlags: 0
