@@ -120,7 +120,8 @@ public class Server : MonoBehaviour
                 { (int)ClientPackets.updTestReceived, ServerHandle.UDPTestReceived },
                 { (int)ClientPackets.playerMovement, ServerHandle.PlayerMovement },
                 { (int)ClientPackets.playerShoot, ServerHandle.PlayerShoot },
-                { (int)ClientPackets.weaponIndex, ServerHandle.WeaponIndex },
+                { (int)ClientPackets.weaponSelected, ServerHandle.WeaponSelected },
+                { (int)ClientPackets.weaponsID, ServerHandle.WeaponsID },
             };
         Debug.Log("Initialized packets.");
     }

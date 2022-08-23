@@ -28,7 +28,8 @@ public enum ClientPackets
     updTestReceived,
     playerMovement,
     playerShoot,
-    weaponIndex
+    weaponSelected, // secondary or primary
+    weaponsID // ID of the weapon
 }
 
 public class Packet : IDisposable

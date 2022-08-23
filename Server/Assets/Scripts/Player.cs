@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     public bool[] inputs;
 
     public WeaponSwitching weaponSwitching;
-    public Weapon currentWeapon;
 
     [Header("Player stats")]
     public int deaths;
@@ -45,7 +44,7 @@ public class Player : MonoBehaviour
         id = _id;
         username = username == "" ? "Player"+id : _username;
         health = maxHealth;
-        currentWeapon = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
+
         deaths = 0;
         kills = 0;
         inputs = new bool[9];
@@ -59,11 +58,11 @@ public class Player : MonoBehaviour
 
         AnimationHandler();
 
-        currentWeapon.getButton = inputs[7];
+        weaponSwitching.currentWeapon.gameObject.GetComponent<Weapon>().getButton = inputs[7];
 
 
         if(inputs[8]){
-            StartCoroutine(currentWeapon.Reload());
+            StartCoroutine(weaponSwitching.currentWeapon.gameObject.GetComponent<Weapon>().Reload());
         }
 
         
@@ -155,9 +154,9 @@ public class Player : MonoBehaviour
 
     public void Shoot(Vector3 _viewDirection)
     {
-        currentWeapon = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
-        currentWeapon.viewDirection = _viewDirection;
-        currentWeapon.shootOrigin = shootOrigin;
+        //currentWeapon = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
+        weaponSwitching.currentWeapon.gameObject.GetComponent<Weapon>().viewDirection = _viewDirection;
+        weaponSwitching.currentWeapon.gameObject.GetComponent<Weapon>().shootOrigin = shootOrigin;
     }
 
     /// <summary>

@@ -62,7 +62,7 @@ public class WeaponSwitching : MonoBehaviour {
                 
                 weapons[primaryWeaponID].gameObject.SetActive(true);
                 weapons[secondaryWeaponID].gameObject.SetActive(false);
-                OnWeaponSelected(primaryWeaponID);
+                OnWeaponSelected(selectedWeapon);
                 break;
 
             case 1:
@@ -70,7 +70,7 @@ public class WeaponSwitching : MonoBehaviour {
 
                 weapons[primaryWeaponID].gameObject.SetActive(false);
                 weapons[secondaryWeaponID].gameObject.SetActive(true);
-                OnWeaponSelected(secondaryWeaponID);
+                OnWeaponSelected(selectedWeapon);
                 break;
 
         }
@@ -79,6 +79,6 @@ public class WeaponSwitching : MonoBehaviour {
     }
 
     private void OnWeaponSelected(int weaponIndex) { 
-        ClientSend.WeaponIndex(weaponIndex);
+        ClientSend.WeaponSelected(weaponIndex);
     }
 }

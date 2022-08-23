@@ -51,6 +51,9 @@ public class Enemy : MonoBehaviour
 
     private void LateUpdate()
     {
+        if(!mainPlayer)
+            mainPlayer = GameObject.FindGameObjectWithTag("Player");
+
         enemyCanvas.transform.LookAt(mainPlayer.transform);
         //enemyCanvas.transform.Rotate(0, 180, 0);
     }

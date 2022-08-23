@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour
             myPlayer = _player.GetComponent<PlayerController>();
             myPlayer.weaponHolder.primaryWeaponID = primaryWeaponID;
             myPlayer.weaponHolder.secondaryWeaponID = secondaryWeaponID;
+
+            ClientSend.WeaponsID(primaryWeaponID, secondaryWeaponID);
         }
     }
 }

@@ -45,12 +45,19 @@ public class ServerHandle : MonoBehaviour
         Server.clients[_fromClient].player.Shoot(_shootDirection);
     }
 
-    public static void WeaponIndex(int _fromClient, Packet _packet)
+    public static void WeaponSelected(int _fromClient, Packet _packet)
     {
         int _weaponIndex = _packet.ReadInt();
 
         Server.clients[_fromClient].player.weaponSwitching.Select(_weaponIndex);
+    }
 
-        
+    public static void WeaponsID(int _fromClient, Packet _packet)
+    {
+        int _primary = _packet.ReadInt();
+        int _secondary = _packet.ReadInt();
+
+        Server.clients[_fromClient].player.weaponSwitching.primaryWeaponID = _primary;
+        Server.clients[_fromClient].player.weaponSwitching.secondaryWeaponID = _secondary;
     }
 }

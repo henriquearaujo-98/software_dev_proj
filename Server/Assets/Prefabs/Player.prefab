@@ -28,8 +28,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7086014963819920196}
   - {fileID: 927118381739179216}
+  - {fileID: 7086014963819920196}
   - {fileID: 8939353056850286816}
   - {fileID: 5509419319718928741}
   m_Father: {fileID: 8341374824287880470}
@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons: []
+  currentWeapon: {fileID: 0}
+  primaryWeaponID: 0
+  secondaryWeaponID: 1
   keys: 
   switchTime: 0.5
   selectedWeapon: 0
@@ -108,7 +111,6 @@ MonoBehaviour:
   maxHealth: 100
   inputs: 
   weaponSwitching: {fileID: 5234494242926772409}
-  currentWeapon: {fileID: 0}
   deaths: 0
   kills: 0
   anim: {fileID: 8422512697538820514}
@@ -739,7 +741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3343734660757285935, guid: 9457de33562d2b74fa0ba4f34fa32678, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3343734660757285935, guid: 9457de33562d2b74fa0ba4f34fa32678, type: 3}
       propertyPath: m_LocalPosition.x
@@ -879,7 +881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8505047210761118081, guid: 16040f5e8b421784e977b699f5788a6f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8505047210761118081, guid: 16040f5e8b421784e977b699f5788a6f, type: 3}
       propertyPath: m_LocalPosition.x

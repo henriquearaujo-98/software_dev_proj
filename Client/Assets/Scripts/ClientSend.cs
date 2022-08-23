@@ -66,15 +66,28 @@ public class ClientSend : MonoBehaviour
         }
     }
 
-    public static void WeaponIndex(int weaponIndex)
+    public static void WeaponSelected(int _weaponSelected)
     {
-        using (Packet _packet = new Packet((int)ClientPackets.weaponIndex))
+        using (Packet _packet = new Packet((int)ClientPackets.weaponSelected))
         {
-            _packet.Write(weaponIndex);
+            _packet.Write(_weaponSelected);
 
             SendTCPData(_packet);
 
             
+        }
+    }
+
+    public static void WeaponsID(int _primary, int _secondary)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.weaponsID))
+        {
+            _packet.Write(_primary);
+            _packet.Write(_secondary);
+
+            SendTCPData(_packet);
+
+
         }
     }
     #endregion
