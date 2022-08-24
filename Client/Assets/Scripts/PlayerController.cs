@@ -19,17 +19,27 @@ public class PlayerController : MonoBehaviour
     public KillFeedHandler killFeedHandler;
     public Animator canvasAnim;
     [SerializeField] Camera cam;
-    [SerializeField] float crouchHeight;
-    [SerializeField] float normalHeight;
-    [SerializeField] float crouchSpeed;
+    private Animator anim;
 
-
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
             ClientSend.PlayerShoot(camTransform.forward);
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            anim.SetBool("Crouch", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.C))
+        {
+            anim.SetBool("Crouch", false);
         }
 
         HealthBar();
@@ -55,14 +65,7 @@ public class PlayerController : MonoBehaviour
             weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isRunning = false;
         }
 
-        if (Input.GetKey(KeyCode.C))
-        {
-            cam.transform.position = Vector3.Lerp(cam.transform.position, new Vector3( cam.transform.position.x, crouchHeight, cam.transform.position.z), crouchSpeed);
-        }
-        else
-        {
-            cam.transform.position = Vector3.Lerp(cam.transform.position, new Vector3(cam.transform.position.x, normalHeight, cam.transform.position.z), crouchSpeed);
-        }
+        
     }
 
     private void SendInputToServer()

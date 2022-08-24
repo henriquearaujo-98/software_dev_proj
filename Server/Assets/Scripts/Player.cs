@@ -78,8 +78,8 @@ public class Player : MonoBehaviour
         ServerSend.PlayerPosition(this);
         ServerSend.PlayerRotation(this);
         ServerSend.PlayerInputs(this, inputs);
-        
-        
+
+        Debug.Log(controller.isGrounded);
     }
 
     void AnimationHandler()
