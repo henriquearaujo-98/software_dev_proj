@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
                 anim.SetBool("Run", false);
         }
 
-        if (inputs[7])
+        if (inputs[7] && isCrouching == false)
             anim.Play("Shoot", 0, 0f);
 
         //anim.SetBool("Grounded", controller.isGrounded);
