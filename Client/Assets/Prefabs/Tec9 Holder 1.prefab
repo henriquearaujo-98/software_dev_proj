@@ -36,7 +36,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5500483636360722020
 Transform:
   m_ObjectHideFlags: 0
@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 524777af654464993a584e4d046c2ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   id: 3
   maxAmmoInMagazine: 30
   currAmmo: 30
@@ -72,21 +73,20 @@ MonoBehaviour:
   reloadTime: 1
   isReloading: 0
   isWalking: 1
-  nextFire: 0
+  isRunning: 0
   ImpactPoint: {fileID: 19800002, guid: 627bfa08ce624ab40ab2fea71785b5f0, type: 3}
   ammoUI: {fileID: 0}
+  MuzzleFlash: {fileID: 4250865006927308352}
+  bulletTrail: {fileID: 6670010285891972953, guid: 0e4afad5f27c1492a8b062c78b516cb2, type: 3}
   shootingSound: {fileID: 8300000, guid: 8581f806dddef8046b4942de05b897be, type: 3}
   reloadingSound: {fileID: 8300000, guid: d55a53aecff3149fbb2f46b0b9709e62, type: 3}
   audioSource: {fileID: 8469806323382231109}
-  MuzzleFlash: {fileID: 4250865006927308352}
-  owner: {fileID: 0}
   anim: {fileID: 4319885696288688980}
   aimPosition: {x: -0.375, y: 0.24, z: 0.33}
   ADSSpeed: 8
   aimZoom: 45
   crosshair: {fileID: 0}
   gunBarrell: {fileID: 4250865006945657600}
-  bulletTrail: {fileID: 6670010285891972953, guid: 0e4afad5f27c1492a8b062c78b516cb2, type: 3}
 --- !u!82 &8469806323382231109
 AudioSource:
   m_ObjectHideFlags: 0

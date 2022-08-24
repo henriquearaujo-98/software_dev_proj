@@ -8,8 +8,6 @@ public class NetworkManager : MonoBehaviour
 
     public static NetworkManager instance;
 
-    public List<Weapon> weapons; // Make sure weapon's ID correspond to their index on this list. Also that client and server are synch
-
     private void Awake()
     {
         if (instance == null)

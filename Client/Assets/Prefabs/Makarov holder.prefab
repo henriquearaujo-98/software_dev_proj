@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4538088507967026884}
   - component: {fileID: 8493812638902134470}
+  - component: {fileID: 2345987821119817149}
   m_Layer: 0
   m_Name: Makarov holder
   m_TagString: Untagged
@@ -24,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7514915981595601820}
-  m_LocalRotation: {x: 0.033712685, y: 0.024156734, z: -0.00081509, w: 0.99913925}
+  m_LocalRotation: {x: 0.03371223, y: 0.024156738, z: -0.000815079, w: 0.9991393}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -44,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 524777af654464993a584e4d046c2ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   id: 1
   maxAmmoInMagazine: 7
   currAmmo: 7
@@ -52,18 +54,116 @@ MonoBehaviour:
   reloadTime: 1
   isReloading: 0
   isWalking: 1
-  nextFire: 0
+  isRunning: 0
   ImpactPoint: {fileID: 19800002, guid: 627bfa08ce624ab40ab2fea71785b5f0, type: 3}
   ammoUI: {fileID: 0}
+  MuzzleFlash: {fileID: 3214853668872174533}
+  bulletTrail: {fileID: 6670010285891972953, guid: 0e4afad5f27c1492a8b062c78b516cb2, type: 3}
   shootingSound: {fileID: 8300000, guid: f19e3fdb9c8082647a2c32beca28ba84, type: 3}
   reloadingSound: {fileID: 8300000, guid: 432249d48011a48f5a8591069231d7d5, type: 3}
-  audioSource: {fileID: 0}
-  MuzzleFlash: {fileID: 3214853668872174533}
-  owner: {fileID: 0}
+  audioSource: {fileID: 2345987821119817149}
   anim: {fileID: 4141140229319607548}
-  aimPosition: {x: -0.23, y: 0.229, z: -0.01}
+  aimPosition: {x: -0.22, y: 0.225, z: 0.119}
   ADSSpeed: 8
   aimZoom: 45
+  crosshair: {fileID: 0}
+  gunBarrell: {fileID: 3214853668852776583}
+--- !u!82 &2345987821119817149
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7514915981595601820}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.607
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1106804656788576880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74,6 +174,10 @@ PrefabInstance:
     - target: {fileID: 2517812837558689572, guid: 0a4b6727a478f63459593d5ed980b71f, type: 3}
       propertyPath: m_Name
       value: Makarov
+      objectReference: {fileID: 0}
+    - target: {fileID: 2576442271271663831, guid: 0a4b6727a478f63459593d5ed980b71f, type: 3}
+      propertyPath: m_Name
+      value: Gun barrel
       objectReference: {fileID: 0}
     - target: {fileID: 2576442271271822583, guid: 0a4b6727a478f63459593d5ed980b71f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -206,6 +310,11 @@ Transform:
 --- !u!95 &4141140229319607548 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3901350799125339788, guid: 0a4b6727a478f63459593d5ed980b71f, type: 3}
+  m_PrefabInstance: {fileID: 1106804656788576880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3214853668852776583 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2576442271271822583, guid: 0a4b6727a478f63459593d5ed980b71f, type: 3}
   m_PrefabInstance: {fileID: 1106804656788576880}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &3214853668872174533 stripped

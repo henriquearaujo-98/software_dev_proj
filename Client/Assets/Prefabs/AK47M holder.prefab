@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6175225764967772689}
   - component: {fileID: 5791338026372658683}
   - component: {fileID: 5460540319429195493}
+  - component: {fileID: 8534338950686443875}
   m_Layer: 0
   m_Name: AK47M holder
   m_TagString: Untagged
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 524777af654464993a584e4d046c2ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   id: 0
   maxAmmoInMagazine: 30
   currAmmo: 30
@@ -53,22 +55,117 @@ MonoBehaviour:
   reloadTime: 1
   isReloading: 0
   isWalking: 1
-  nextFire: 0
+  isRunning: 0
   ImpactPoint: {fileID: 19800002, guid: 627bfa08ce624ab40ab2fea71785b5f0, type: 3}
   ammoUI: {fileID: 0}
+  MuzzleFlash: {fileID: 5529337160424821947}
+  bulletTrail: {fileID: 6670010285891972953, guid: 0e4afad5f27c1492a8b062c78b516cb2, type: 3}
   shootingSound: {fileID: 8300000, guid: 8581f806dddef8046b4942de05b897be, type: 3}
   reloadingSound: {fileID: 8300000, guid: d55a53aecff3149fbb2f46b0b9709e62, type: 3}
-  audioSource: {fileID: 5460540319429195493}
-  MuzzleFlash: {fileID: 5529337160424821947}
-  owner: {fileID: 0}
+  audioSource: {fileID: 8534338950686443875}
   anim: {fileID: 5740098538878699537}
   aimPosition: {x: -0.3999981, y: 0.1783162, z: -0.005145777}
   ADSSpeed: 8
   aimZoom: 45
   crosshair: {fileID: 0}
-  gunBarrell: {fileID: 6545081354992350386}
-  bulletTrail: {fileID: 6670010285891972953, guid: 0e4afad5f27c1492a8b062c78b516cb2, type: 3}
+  gunBarrell: {fileID: 5529337160438977019}
 --- !u!82 &5460540319429195493
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386647714137296103}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.598
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &8534338950686443875
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,6 +316,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: AK47M
       objectReference: {fileID: 0}
+    - target: {fileID: 3482065079260951367, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: m_Name
+      value: Gun Barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482065079276120609, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482065079276120611, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482065079276120613, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482065079276120615, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d2dd488373204a41920108f3057597e, type: 3}
 --- !u!4 &8879387716561010056 stripped
@@ -231,13 +348,13 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3694654094337390221, guid: 1d2dd488373204a41920108f3057597e, type: 3}
   m_PrefabInstance: {fileID: 9002380540568321692}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &5529337160438977019 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3482065079260917607, guid: 1d2dd488373204a41920108f3057597e, type: 3}
+  m_PrefabInstance: {fileID: 9002380540568321692}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &5529337160424821947 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3482065079276120615, guid: 1d2dd488373204a41920108f3057597e, type: 3}
-  m_PrefabInstance: {fileID: 9002380540568321692}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6545081354992350386 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2754564386280393262, guid: 1d2dd488373204a41920108f3057597e, type: 3}
   m_PrefabInstance: {fileID: 9002380540568321692}
   m_PrefabAsset: {fileID: 0}

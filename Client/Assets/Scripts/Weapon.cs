@@ -9,48 +9,55 @@ using UnityEngine.Audio;
 
 public class Weapon : MonoBehaviour
 {
+    [Header("Owner")]
+    [SerializeField] PlayerManager owner;
+
+    [Header("Attributes")]
     public int id;
     public int maxAmmoInMagazine;
     public int currAmmo;
     public int TotalAmmo;
     public float fireRate;
     public float reloadTime = 1f;
+    private float nextFire;
+
+
+    [Header("States")]
     public bool isReloading = false ;
     public bool isWalking = true;
     public bool isRunning = false;
+    private bool isAiming;
+    
 
-    public float nextFire;
-
+    [Header("Visuals")]
     public ParticleSystem ImpactPoint;
-
     public Text ammoUI;
+    public ParticleSystem MuzzleFlash;
+    
+    public TrailRenderer bulletTrail;
 
+    [Header("Audio")]
     public AudioClip shootingSound;
     public AudioClip reloadingSound;
-
     public AudioSource audioSource;
 
-
-    private Transform shootOrigin;
-    public ParticleSystem MuzzleFlash;
-
-    [SerializeField] PlayerManager owner;
-
+    [Header("Animation")]
     public Animator anim;
-
     private Vector3 originalPosition;
     public Vector3 aimPosition;
-    private bool isAiming;
     Camera playerCam;
     public float ADSSpeed = 8f;
     float initialZoom;
     public float aimZoom = 45;
     public GameObject crosshair;
 
+    [Header("References")]
     public Transform gunBarrell;
-    public TrailRenderer bulletTrail;
-
+    private Transform shootOrigin;
     
+
+
+
 
     private void Awake() {
         shootOrigin = GameObject.FindGameObjectWithTag("PlayerCamera").transform;

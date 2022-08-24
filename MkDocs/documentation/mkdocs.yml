@@ -21,6 +21,9 @@ nav:
   - 'Server':
     - 'server/index.md'
     - 'server/overview.md'
+  - 'Weapons':
+    - 'weapons/weapons.md'
+    - 'weapons/weapon_switching.md'
   
 
 
