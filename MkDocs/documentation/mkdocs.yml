@@ -21,9 +21,15 @@ nav:
   - 'Server':
     - 'server/index.md'
     - 'server/overview.md'
-  - 'Weapons':
+  - 'Weapon System':
     - 'weapons/weapons.md'
+    - 'weapons/shooting.md'
     - 'weapons/weapon_switching.md'
+    - 'weapons/damage_and_hitboxes.md'
+  - 'Player':
+    - 'player/local_remote_player.md'
+    - 'player/local_player.md'
+
   
 
 

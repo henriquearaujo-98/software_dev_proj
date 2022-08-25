@@ -79,7 +79,6 @@ public class Player : MonoBehaviour
         ServerSend.PlayerRotation(this);
         ServerSend.PlayerInputs(this, inputs);
 
-        Debug.Log(controller.isGrounded);
     }
 
     void AnimationHandler()
@@ -96,9 +95,15 @@ public class Player : MonoBehaviour
         if (inputs[0] || inputs[1] || inputs[2] || inputs[3])
         {
             if (inputs[5])
+            {
                 anim.SetBool("Run", true);
+                weaponSwitching.currentWeapon.GetComponent<Weapon>().isRunning = true;
+            }
             else
+            {
                 anim.SetBool("Run", false);
+                weaponSwitching.currentWeapon.GetComponent<Weapon>().isRunning = false;
+            }   
         }
 
         if (inputs[7] && isCrouching == false)
@@ -196,7 +201,6 @@ public class Player : MonoBehaviour
 
     public void Shoot(Vector3 _viewDirection)
     {
-        //currentWeapon = weaponSwitching.weapons[weaponSwitching.selectedWeapon].GetComponent<Weapon>();
         weaponSwitching.currentWeapon.gameObject.GetComponent<Weapon>().viewDirection = _viewDirection;
         weaponSwitching.currentWeapon.gameObject.GetComponent<Weapon>().shootOrigin = shootOrigin;
     }

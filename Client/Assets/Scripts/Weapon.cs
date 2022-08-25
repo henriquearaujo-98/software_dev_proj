@@ -9,17 +9,21 @@ using UnityEngine.Audio;
 
 public class Weapon : MonoBehaviour
 {
-    [Header("Owner")]
+    [Header("Global")]
     [SerializeField] PlayerManager owner;
-
-    [Header("Attributes")]
     public int id;
+
+    [Header("Ammunition")]
     public int maxAmmoInMagazine;
     public int currAmmo;
     public int TotalAmmo;
+
+    [Header("Fire Rate")]
     public float fireRate;
-    public float reloadTime = 1f;
     private float nextFire;
+
+    [Header("Reload")]
+    public float reloadTime = 1f;
 
 
     [Header("States")]
@@ -33,7 +37,6 @@ public class Weapon : MonoBehaviour
     public ParticleSystem ImpactPoint;
     public Text ammoUI;
     public ParticleSystem MuzzleFlash;
-    
     public TrailRenderer bulletTrail;
 
     [Header("Audio")]
@@ -43,6 +46,8 @@ public class Weapon : MonoBehaviour
 
     [Header("Animation")]
     public Animator anim;
+
+    [Header("ADS")]
     private Vector3 originalPosition;
     public Vector3 aimPosition;
     Camera playerCam;

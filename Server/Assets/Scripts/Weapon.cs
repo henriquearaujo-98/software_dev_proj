@@ -4,31 +4,47 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [Header("Global")]
+    [SerializeField] Player owner;
     public int id;
+    public Transform shootOrigin;
+    public int damage;
+
+    [Header("Ammunition")]
     public int maxAmmoInMagazine;
     public int currAmmo;
     public int TotalAmmo;
+
+
+
+    [Header("Fire Rate")]
     public float fireRate;
     public float reloadTime = 1f;
+    private float nextFire;
+    
+
+    [Header("Reload")]
+    public bool canShoot;
+    
+
+    [Header("States")]
+    bool automaticControl = true;
     public bool isReloading = false;
-    public bool fire = false;
-    public int damage;
+    public bool isRunning = false;
 
-    public float nextFire;
-    public ParticleSystem ImpactPoint; 
 
-    public Transform shootOrigin;
-    public ParticleSystem MuzzleFlash;
 
+
+    [Header("Networking")]
     public bool getButton; // for automatic fire
     public Vector3 viewDirection;
 
-    bool automaticControl = true;
+    
 
 
-    [SerializeField] Player owner;
+    
 
-    public bool canShoot;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -77,21 +93,28 @@ public class Weapon : MonoBehaviour
         if (TotalAmmo<=0 && currAmmo<=0)
             return; ///add clicking sound 
 
+        if (isRunning)
+            return;
+
         currAmmo--;
         
 
        if (Physics.Raycast(shootOrigin.position, viewDirection, out RaycastHit _hit, 25f, LayerMask.GetMask("Hitbox")))
         {
 
-            if (_hit.collider.GetComponent<HitboxHandler>().playerScript.id == owner.id)
+            HitboxHandler HH = _hit.collider.GetComponent<HitboxHandler>();
+
+            if (HH.playerScript.id == owner.id)
                 return;
 
-            float damageMultiplier = _hit.collider.GetComponent<HitboxHandler>().damageMultiplier;
-            float other_health = _hit.collider.GetComponent<HitboxHandler>().playerScript.TakeDamage(damage * damageMultiplier, owner, this);
+            float damageMultiplier = HH.damageMultiplier;
+
+            float other_health = HH.playerScript.TakeDamage(damage * damageMultiplier, owner, this);
+            
             if (other_health <= 0)
                 ServerSend.KillNotification(owner);
 
-            Debug.Log(_hit.collider.GetComponent<HitboxHandler>().name);
+            Debug.Log(HH.name);
             
         }
 
