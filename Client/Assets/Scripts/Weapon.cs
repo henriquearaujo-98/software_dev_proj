@@ -134,9 +134,6 @@ public class Weapon : MonoBehaviour
     }
 
     void Shoot(){
-
-        if (ResumeMenu.GameIsPaused == true)
-            return;
         
 
         if (TotalAmmo<=0 && currAmmo<=0)
