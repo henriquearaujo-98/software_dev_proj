@@ -296,7 +296,7 @@ public class Client : MonoBehaviour
         LevelManager.instance.SetServerConnectionProgress(10);
     }
 
-    public void Disconnect()
+    private void Disconnect()
     {
         if (isConnected)
         {
