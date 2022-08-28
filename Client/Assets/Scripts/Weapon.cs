@@ -161,6 +161,7 @@ public class Weapon : MonoBehaviour
     }
 
     void Shoot(){
+        
 
         if (isRunning)
             return;
