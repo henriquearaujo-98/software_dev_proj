@@ -32,4 +32,9 @@ public class UIManager : MonoBehaviour
         usernameField.interactable = false;
         Client.instance.ConnectToServer();
     }
+
+    public void QuitGame(){
+        Debug.Log("quiting game");
+        Application.Quit();
+    }
 }
