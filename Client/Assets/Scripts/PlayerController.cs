@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip[] footStepsAudioClips;
     float footStepTimer;
     AudioSource audioSource;
+    public AudioSource footstepsSound;
+
+    
 
     [SerializeField] Transform camTransform;
     public WeaponSwitching weaponHolder;
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             anim.SetBool("Crouch", true);
+            
         }
         else if (Input.GetKeyUp(KeyCode.C))
         {
@@ -53,16 +57,25 @@ public class PlayerController : MonoBehaviour
         {
             weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isWalking = true;
 
+            footstepsSound.volume = Random.Range(0.8f, 1);
+            footstepsSound.pitch = Random.Range(0.8f, 1.1f);
+            footstepsSound.enabled = true;
+
             if(Input.GetKey(KeyCode.LeftShift))
+            {
                 weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isRunning = true;
+            }
             else
+            {
                 weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isRunning = false;
+            }
 
         }
         else
         {
             weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isWalking = false;
             weaponHolder.currentWeapon.gameObject.GetComponent<Weapon>().isRunning = false;
+            footstepsSound.enabled = false;
         }
 
         
