@@ -7,6 +7,7 @@ TagManager:
   - ShootOrigin
   - jump
   - Hitbox
+  - SpawnSystem
   layers:
   - Default
   - TransparentFX
