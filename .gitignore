@@ -123,3 +123,5 @@ Server/.Trashes
 Server/Icon?
 Server/ehthumbs.db
 Server/Thumbs.db
+MkDocs/documentation/docs/.DS_Store
+MkDocs/documentation/docs/client/.DS_Store
