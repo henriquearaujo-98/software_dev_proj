@@ -41,8 +41,8 @@ public class ResumeMenu : MonoBehaviour
 
     public void diconnect(){
         Debug.Log("disconnecting");
+        Client.instance.Disconnect();
+        Destroy(GameObject.FindGameObjectWithTag("Player"), 0f);
         SceneManager.LoadScene("MainMenu");
-
     }
-    
 }
