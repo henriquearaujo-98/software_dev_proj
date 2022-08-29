@@ -252,7 +252,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        transform.position = new Vector3(0f, 25f, 0f); //Respawn position
+        transform.position = NetworkManager.instance.spawnSystem.GetNewSpawnPosition(); //Respawn position
         ServerSend.PlayerPosition(this);
         
 

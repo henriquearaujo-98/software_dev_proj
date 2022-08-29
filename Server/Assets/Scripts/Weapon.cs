@@ -99,7 +99,7 @@ public class Weapon : MonoBehaviour
         currAmmo--;
         
 
-       if (Physics.Raycast(shootOrigin.position, viewDirection, out RaycastHit _hit, 25f, LayerMask.GetMask("Hitbox")))
+       if (Physics.Raycast(shootOrigin.position, viewDirection, out RaycastHit _hit, 500f, LayerMask.GetMask("Hitbox")))
         {
 
             HitboxHandler HH = _hit.collider.GetComponent<HitboxHandler>();

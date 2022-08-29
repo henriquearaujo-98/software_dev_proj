@@ -8,6 +8,8 @@ public class NetworkManager : MonoBehaviour
 
     public static NetworkManager instance;
 
+    public SpawnSystem spawnSystem;
+
     private void Awake()
     {
         if (instance == null)
@@ -27,6 +29,8 @@ public class NetworkManager : MonoBehaviour
         Application.targetFrameRate = 400;
 
         Server.Start(50, 9443);
+
+        spawnSystem = GameObject.FindGameObjectWithTag("SpawnSystem").GetComponent<SpawnSystem>();
     }
 
     private void OnApplicationQuit()
@@ -36,6 +40,6 @@ public class NetworkManager : MonoBehaviour
 
     public Player InstantiatePlayer()
     {
-        return Instantiate(playerPrefab, new Vector3(3f, 2f, 1f), Quaternion.identity).GetComponent<Player>();
+        return Instantiate(playerPrefab, spawnSystem.GetNewSpawnPosition(), Quaternion.identity).GetComponent<Player>();
     }
 }
