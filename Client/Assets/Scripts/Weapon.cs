@@ -161,6 +161,8 @@ public class Weapon : MonoBehaviour
     }
 
     void Shoot(){
+        if (ResumeMenu.GameIsPaused == true)
+            return;
 
         if (isRunning)
             return;
