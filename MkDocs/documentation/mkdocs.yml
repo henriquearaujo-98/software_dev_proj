@@ -14,10 +14,7 @@ nav:
   - 'Networking':
     - 'networking/start.md'
     - 'networking/sending_a_packet.md'
-  - 'Game Logic':
-    - 'gamelogic/spawning_a_player.md'
-    - 'gamelogic/player_movement_(rotation_and_position).md'
-    - 'gamelogic/player_shooting,_health_and_respawn.md'
+    - 'networking/map_loading.md'
   - 'Server':
     - 'server/index.md'
     - 'server/overview.md'

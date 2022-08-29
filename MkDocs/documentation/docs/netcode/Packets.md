@@ -1,5 +1,7 @@
 # Packets
 
+<sub>Author: Henrique Araújo</sup>
+
 It is impossible to send, for example, an integer or string through a wire. Instead, you need to, send a byte array that represents a certain data structure and its value. To accomplish this, we use the in-house implementation of the Packet class.
 
 The premise is that a packet has a unique ID known to both client and server. So, in that sense, we have 2 enumerator types on the Packet.cs class. One to keep track of the available packets that a client can send/server can receive and one to keep track of the packets that the client can receive/server can send.

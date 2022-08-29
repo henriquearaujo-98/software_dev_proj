@@ -1,5 +1,8 @@
 # TCP Connection
 
+<sub>Author: Henrique Araújo</sup>
+
+
 ## Server
 
 The first thing the server does when it starts, is start listening for incoming TCP connections. 

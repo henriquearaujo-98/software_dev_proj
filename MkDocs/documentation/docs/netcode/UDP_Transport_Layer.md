@@ -1,5 +1,8 @@
 # UDP Transport Layer
 
+<sub>Author: Henrique Araújo</sup>
+
+
 The UDP/IP protocol suite serves the same purpose as its counterpart, the TCP/IP protocol suite. The main difference between these two is that whilst the TCP guarantees the delivery of packets in their correct order at the cost of latency, the UDP just sends it to the client disregarding if it gets there or not. This is mostly appropriate if we need to send packets every tick of the server.
 
 The UDP connection is only established after the TCP connection. In this sense, we use the connection packets from the TCP to trigger the UDP connection.

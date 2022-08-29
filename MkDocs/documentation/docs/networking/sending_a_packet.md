@@ -1,5 +1,8 @@
 # Sending Packets
 
+<sub>Author: Henrique Araújo</sup>
+
+
 ## From Client to Server
 
 Sending a packet from a client to the server requires 3 steps:

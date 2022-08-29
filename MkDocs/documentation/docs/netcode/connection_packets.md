@@ -1,5 +1,7 @@
 # Connection packets
 
+<sub>Author: Henrique Araújo</sup>
+
 This section is going to cover some concepts such as Server/Client synchornization aswell as how the first players are connected to the server.
 
 ## Welcome packet

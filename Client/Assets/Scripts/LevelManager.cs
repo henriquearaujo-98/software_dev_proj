@@ -34,21 +34,26 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    public void InitializeLoadingScreen()
+    {
+        loadingScreen.SetActive(true);
+        SetServerConnectionProgress(0);
+    }
+
     public void SetServerConnectionProgress(float _progress)
     {
-        slider.value = _progress;
+        slider.value = _progress / 100;
     }
 
     public async Task LoadSceneAsync(int _mapID)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(maps[_mapID]);
-        loadingScreen.SetActive(true);
+        
         while (!operation.isDone)
         {
-            
             float progress = (Mathf.Clamp01(operation.progress / 0.9f) / 2) + 0.5f; // 50% of the loading slide
             slider.value += progress;
-            Debug.Log(progress);
+            
             await Task.Yield();
         }
 

@@ -43,10 +43,6 @@ public class GameManager : MonoBehaviour
     /// <param name="_sceneID">SceneID of the server</param>
     public async void SpawnPlayer(int _id, string _username, Vector3 _position, Quaternion _rotation, int _sceneID)
     {
-        
-
-        //TODO: Pre game screen
-
         //Spawn Player
         GameObject _player;
         if (_id == Client.instance.myId)

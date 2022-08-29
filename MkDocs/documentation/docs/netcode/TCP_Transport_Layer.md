@@ -1,5 +1,8 @@
 # TCP Transport Layer
 
+<sub>Author: Henrique Araújo</sup>
+
+
 The TCP/IP protocol suite is the most widely used protocol suite on the world wide web. Its premise is to guarantee that the packet reaches its destination and there is no packet loss. However, this approach will cause an increase in server latency since every packet needs to be checked.
 
 In this section we'll walk through how a TCP packet is created, sent and received in great detail.
