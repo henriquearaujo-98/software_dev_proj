@@ -1,24 +1,18 @@
 # Player
+
 <sub>Author: Henrique Araújo</sup>
+
 ## Local Player vs Remote Player
 
 The local player is the ````localPlayer```` prefab whilst the remote player is the ``player`` prefab. 
 
 The local player is the player that the user is controlling. It will send information to the server about its inputs whilst the remote player is the visual representation of the other connected players.
 
-### Local Player
+## Local Player
 
 Given the information [above](#local-player-vs-remote-player), the local player will hold the weapon models, as well as a camera. Since the user controlling it does not see any other models, we just render hands and weapons.
 
 ![local player](remote_local/localPlayer.PNG)
-
-### Remote Player
-
-Given the information [above](#local-player-vs-remote-player), player will be the representation of the other connected players. Because the current 3D models are free, we do not render the correct weapon/hands model. 
-
-![local player](remote_local/remotePlayer.PNG)
-
-## Local Player
 
 This game object is the most important one in the project. It is responsible for most of the user experience.
 
@@ -111,3 +105,15 @@ if (Input.GetKey(KeyCode.Mouse0))
     ClientSend.PlayerShoot(camTransform.forward);
 }
 ```
+
+
+
+
+
+## Remote Player
+
+Given the information [above](#local-player-vs-remote-player), player will be the representation of the other connected players. Because the current 3D models are free, we do not render the correct weapon/hands model. 
+
+![local player](remote_local/remotePlayer.PNG)
+
+In that sense, we receive over the server the inputs that another connected client is sending to the server and, based on that, we trigger the character's states and animations. This is done via de `` ServerInputs `` boolean array and follows a similar logic to when we send a boolean array to the server for game state updating.

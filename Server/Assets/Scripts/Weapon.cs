@@ -111,7 +111,7 @@ public class Weapon : MonoBehaviour
 
             float other_health = HH.playerScript.TakeDamage(damage * damageMultiplier, owner, this);
             
-            if (other_health <= 0)
+            if (other_health <= 0 && HH.type == Hitbox.Head)
                 ServerSend.KillNotification(owner);
 
             Debug.Log(HH.name);

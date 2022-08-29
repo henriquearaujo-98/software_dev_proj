@@ -2,25 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Hitbox { Head, Torso, Legs, Arms };
+
 public class HitboxHandler : MonoBehaviour
 {
     public Player playerScript;
     [HideInInspector] public float damageMultiplier;
 
-    enum Type { Head, Torso, Legs, Arms};
-    [SerializeField] Type type;
+    
+    public Hitbox type;
 
     private void Start()
     {
         switch (type)
         {
-            case Type.Head: damageMultiplier = 4; 
+            case Hitbox.Head: damageMultiplier = 4; 
                 break;
-            case Type.Torso: damageMultiplier = 1.2f; 
+            case Hitbox.Torso: damageMultiplier = 1.2f; 
                 break;
-            case Type.Legs: damageMultiplier = 0.9f;
+            case Hitbox.Legs: damageMultiplier = 0.9f;
                 break;
-            case Type.Arms: damageMultiplier = 0.9f;
+            case Hitbox.Arms: damageMultiplier = 0.9f;
                 break;
             default: damageMultiplier = 1; 
                 break;

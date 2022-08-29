@@ -18,6 +18,8 @@ nav:
   - 'Server':
     - 'server/index.md'
     - 'server/overview.md'
+  - 'Client':
+    - client/local_remote_player.md
   - 'Weapon System':
     - 'weapons/weapons.md'
     - 'weapons/shooting.md'
