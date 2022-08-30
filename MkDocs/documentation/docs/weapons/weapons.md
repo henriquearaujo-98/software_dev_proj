@@ -1,6 +1,6 @@
 # Weapons
 
-<sub>Author: Henrique Araújo</sup>
+<sub>Authors: Henrique Araújo and Orwa Staif</sup>
 
 
 In this module we'll cover how the Weapon class works, as well as how to create a weapon. Note that this module does not cover how to make that weapon available for gameplay. Please refer to [Weapon Swtiching](weapon_switching.md) to learn how to make a weapon available for gameplay.
@@ -149,6 +149,24 @@ public float ADSSpeed = 8f;
 float initialZoom;
 public float aimZoom = 45;
 public GameObject crosshair;
+```
+
+##### Weapon Sway 
+
+Weapon Sway mechanics represent the inherent movement of a firearm in your hands. We added this feature as hard code to make the game more realistic to the user.
+```C#
+private void Update() 
+    {
+        float mouseX = Input.GetAxisRaw("Mouse X") * swayMultiplayer;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * swayMultiplayer;  
+
+        Quaternion rotationX = Quaternion.AngleAxis(mouseX, Vector3.up);
+        Quaternion rotationY = Quaternion.AngleAxis(mouseY, Vector3.right);
+
+        Quaternion targetRotation = rotationX * rotationY;
+
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, smooth * Time.deltaTime);
+    }
 ```
 
 ### Weapon Animatons

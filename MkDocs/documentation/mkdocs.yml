@@ -16,8 +16,7 @@ nav:
     - 'networking/sending_a_packet.md'
     - 'networking/map_loading.md'
   - 'Server':
-    - 'server/index.md'
-    - 'server/overview.md'
+    - 'server/Player.md'
   - 'Client':
     - 'client/local_remote_player.md'
     - 'client/Game_Menus.md'
