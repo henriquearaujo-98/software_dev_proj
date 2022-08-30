@@ -3,8 +3,47 @@
 <sub>Author: Orwa Staif</sup>
 
 ## Main Menu 
+ 
+![Pause Menu](remote_local/MainMenu.png)
 
-bla bla bla 
+The connect bottun is to initiat the connection between the client/server and to start the game.
+Befor you start the Game there is a buy menu where you can select a primary weapon and a secondary weapon. 
+
+```C#
+void InitializePrimaryWeaponContainer()
+    {
+        foreach (Weapon item in GameManager.instance.weapons)
+        {
+            GameObject temp = Instantiate(BuyMenuItem, transform.position, Quaternion.identity);
+            temp.transform.parent = PrimaryWeaponContainer.transform;
+            temp.GetComponent<BuyMenuItem>().text.text = item.name;
+
+            temp.GetComponent<Button>().onClick.AddListener(delegate { 
+
+                GameManager.instance.primaryWeaponID = item.id;
+                PrimaryWeaponConfirm.text = item.name;
+
+            });
+        }
+    }
+
+    void InitializeSecondaryWeaponContainer()
+    {
+        foreach (Weapon item in GameManager.instance.weapons)
+        {
+            GameObject temp = Instantiate(BuyMenuItem, transform.position, Quaternion.identity);
+            temp.transform.parent = SecondaWeaponContainer.transform;
+            temp.GetComponent<BuyMenuItem>().text.text = item.name;
+
+            temp.GetComponent<Button>().onClick.AddListener(delegate { 
+
+                GameManager.instance.secondaryWeaponID = item.id; 
+                SecondaryWeaponConfirm.text = item.name;
+            });
+        }
+    }
+```
+
 
 ## Pause Menu 
 
