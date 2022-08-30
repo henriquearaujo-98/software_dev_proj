@@ -1550,7 +1550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f021d114bc1ce4fc38ad85fa55840fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: bf54ff88778f94410bc94e94aa806d74, type: 2}
+  volumeSlider: {fileID: 1459872056}
   resolutionDropdown: {fileID: 1282766643}
 --- !u!224 &688476312
 RectTransform:

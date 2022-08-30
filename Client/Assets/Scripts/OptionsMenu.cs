@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-   public AudioMixer audioMixer;
+   [SerializeField] Slider volumeSlider;
 
    public Dropdown resolutionDropdown;
 
@@ -25,8 +25,8 @@ public class OptionsMenu : MonoBehaviour
            string option = resolutions[i].width + " x " + resolutions[i].height;
            options.Add(option);
 
-           if (resolutions[i].width == Screen.currentResolution.width &&
-           resolutions[i].height == Screen.currentResolution.width)
+           if (resolutions[i].width == Screen.width &&
+           resolutions[i].height == Screen.width)
            {
                currentResolutionIdex = i;
            }
@@ -38,7 +38,7 @@ public class OptionsMenu : MonoBehaviour
 
    public void SetVolume(float volume)
    {
-       audioMixer.SetFloat("volume", volume);
+       AudioListener.volume = volumeSlider.value;
    }
 
    public void SetQuality (int qualityIndex)
