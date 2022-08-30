@@ -1,6 +1,6 @@
 # Player
 
-<sub>Author: Henrique Araújo</sup>
+<sub>Author: Henrique Araújo and Orwa Staif</sup>
 
 ## Local Player vs Remote Player
 
@@ -33,9 +33,16 @@ Currently, there is only one animations that is player related (not weapon relat
 
 ### Sounds
 
-Attached to the prefab, is a Audio Source component that is responsible for the footstep sounds. The FootSteps class is responsible for this.
+Attached to the prefab, is a Audio Source component that is responsible for the footstep sounds. 
+Inside the player controller class the volume and pitch of the footsteps sound is random. Moreover, hearing the footsteps of the remote player changing regarding the distance between the players.
 
 ![local player audio](remote_local/localplayer_audio.PNG)
+
+```C#
+        footstepsSound.volume = Random.Range(0.8f, 1);
+        footstepsSound.pitch = Random.Range(0.8f, 1.1f);
+        footstepsSound.enabled = true;
+```
 
 ### Player UI
 #### Damage Indicators

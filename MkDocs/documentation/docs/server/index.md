@@ -1,6 +1,0 @@
-# Server Index
-
-<sub>Author: Henrique Araújo</sup>
-
-
-### This and that
