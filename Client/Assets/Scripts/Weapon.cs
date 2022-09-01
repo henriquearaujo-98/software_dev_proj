@@ -30,6 +30,7 @@ public class Weapon : MonoBehaviour
     public bool isReloading = false ;
     public bool isWalking = true;
     public bool isRunning = false;
+
     private bool isAiming;
     
 
@@ -123,6 +124,11 @@ public class Weapon : MonoBehaviour
                 anim.Play("Reload No Bullets");
 
             return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.Play("Jump", 0, 0f);
         }
 
 
