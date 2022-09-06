@@ -26,9 +26,9 @@ public class Weapon : MonoBehaviour
 
     public AudioClip shootingSound;
     public AudioClip reloadingSound;
+    public AudioClip hitmarkerSound;
 
     public AudioSource audioSource;
-
 
     private Transform shootOrigin;
     public ParticleSystem MuzzleFlash;
@@ -152,6 +152,7 @@ public class Weapon : MonoBehaviour
             {
                 if(owner.pc)
                     owner.pc.showHitmarker();
+                    audioSource.PlayOneShot(hitmarkerSound);
             }
             else
             {

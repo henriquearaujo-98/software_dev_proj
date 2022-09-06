@@ -57,6 +57,7 @@ MonoBehaviour:
   ammoUI: {fileID: 0}
   shootingSound: {fileID: 8300000, guid: 8581f806dddef8046b4942de05b897be, type: 3}
   reloadingSound: {fileID: 8300000, guid: d55a53aecff3149fbb2f46b0b9709e62, type: 3}
+  hitmarkerSound: {fileID: 8300000, guid: 2918aa4075dd25d4fa5343d852d85dd4, type: 3}
   audioSource: {fileID: 0}
   MuzzleFlash: {fileID: 5529337160424821947}
   owner: {fileID: 0}
@@ -64,6 +65,7 @@ MonoBehaviour:
   aimPosition: {x: -0.3999981, y: 0.1783162, z: -0.005145777}
   ADSSpeed: 8
   aimZoom: 45
+  crosshair: {fileID: 0}
 --- !u!1001 &9002380540568321692
 PrefabInstance:
   m_ObjectHideFlags: 0
