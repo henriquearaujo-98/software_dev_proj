@@ -1,8 +1,10 @@
-# mkdocs run
+# mkdocs serve
 site_name: Software Development Project Documentation
 nav:
   - 'index.md'
   - 'userguide.md'
+  - 'requirements_specification.md'
+  - 'appendix.md'
   - 'Netcode Overview':
     - netcode/start.md
     - netcode/network_overview.md

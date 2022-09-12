@@ -51,7 +51,7 @@ Note that the server's IP address is always the same as the machine it is runnin
 
 Make sure you are on the ``Test Map`` scene. You can check this on the Editor's window.
 
-![Unity Hub](images/userguide/server_testmap.PNG.PNG).
+![Unity Hub](images/userguide/server_testmap.PNG).
 
 You can now press the Unity Editor's play button to start the server.
 

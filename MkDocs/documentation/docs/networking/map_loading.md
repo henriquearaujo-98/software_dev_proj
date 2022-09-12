@@ -1,5 +1,8 @@
 # Maps & Scenes
 
+<sub>Author: Henrique Araújo</sup>
+
+
 A map is a Unity Scene that is going to be loaded dynamically. The available scenes can be found under ```File -> Build Settings``` on the Unity editor.
 
 ![local player](map_loading/build_settings.PNG)
