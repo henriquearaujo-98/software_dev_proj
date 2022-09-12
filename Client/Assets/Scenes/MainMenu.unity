@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09675364d8de6b468ad4291dbc413d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ip: 127.0.0.1
+  ip: 25.45.241.69
   port: 9443
   myId: 0
 --- !u!4 &687615702
