@@ -1,5 +1,7 @@
 # Maps & Scenes
 
+<sub>Author: Henrique Araújo and Orwa Staif</sup>
+
 A map is a Unity Scene that is going to be loaded dynamically. The available scenes can be found under ```File -> Build Settings``` on the Unity editor.
 
 ![local player](map_loading/build_settings.PNG)
@@ -113,3 +115,9 @@ public async Task LoadSceneAsync(int _mapID)
     loadingScreen.SetActive(false);
 }
 ```
+
+#### Mini Map
+
+it is basically another camera with orthographic projection to see the map from above and to make it easier for the player to know the position. 
+
+![mini map](map_loading/mini.png)
