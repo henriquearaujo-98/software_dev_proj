@@ -86,6 +86,25 @@ You can now press the Unity Editor's play button to start the client.
 
 After it starts, choose a user name, your primary and secondary weapons and press the ``Connect`` button.
 
+
+### Connecting to the server
+
+The Server IP address should be assigned in the Hierarchy's ClientManager object on the ClientManager class. You need to assign it to whatever IP address the server is running on.
+
+![Client IP address](images/userguide/%60client_ipaddress1.PNG)
+
+![Client IP address](images/userguide/client_ipaddress2.PNG)
+
+Should you want to test the project locally, the IP address should be ``` 127.0.0.1 ```.
+
+Alternatively, for online gameplay, there has been established an Hamachi network with the following credentials:
+
++ Network Name: Software Development Project
++ Password : FHWS
+
+In this case, the IP address should be assigned to `25.45.241.69`
+
+
 #### Building the client
 
 To create a production ready version of this project, go to ``File -> Build Settings`` and press ``Build``.
